@@ -1,0 +1,263 @@
+/* Видео секция */
+.about-video-section {
+    padding: 80px 0;
+    background: var(--dark);
+}
+
+.video-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: #000;
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 16px;
+    border-radius: 30px;
+    color: var(--gold);
+    font-size: 14px;
+}
+
+/* История */
+.about-story {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #0d0b0b, var(--dark));
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.story-text h2 {
+    font-size: 48px;
+    margin: 16px 0 24px;
+}
+
+.story-text p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.story-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gold);
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.story-image .image-stack {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.image-stack img {
+    width: 100%;
+    border-radius: 20px;
+    transition: transform 0.3s;
+}
+
+.image-stack img:hover {
+    transform: scale(1.02);
+}
+
+/* Философия */
+.about-philosophy {
+    padding: 100px 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=1600');
+    background-size: cover;
+    background-attachment: fixed;
+    text-align: center;
+}
+
+.philosophy-quote {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.quote-icon {
+    font-size: 80px;
+    color: var(--gold);
+    font-family: serif;
+    opacity: 0.5;
+}
+
+.philosophy-quote h3 {
+    font-size: 36px;
+    margin: 20px 0;
+    color: var(--gold);
+}
+
+.philosophy-quote p {
+    font-size: 20px;
+    color: var(--text-muted);
+}
+
+/* Команда */
+.about-team {
+    padding: 100px 0;
+    background: var(--dark);
+}
+
+.team-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.team-header h2 {
+    font-size: 48px;
+    margin: 16px 0;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.team-card {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #0f0d0d, #0a0808);
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    transition: all 0.3s;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+}
+
+.team-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--gold);
+}
+
+.team-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-card h4 {
+    color: var(--gold);
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.team-name {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.team-desc {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* Преимущества */
+.about-features {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #0d0b0b, var(--dark));
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 40px;
+    background: rgba(212, 175, 55, 0.05);
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+
+.feature-item:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.feature-item h4 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.feature-item p {
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .story-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .story-text h2 {
+        font-size: 32px;
+    }
+
+    .story-stats {
+        justify-content: center;
+    }
+
+    .philosophy-quote h3 {
+        font-size: 24px;
+    }
+
+    .team-header h2 {
+        font-size: 32px;
+    }
+}

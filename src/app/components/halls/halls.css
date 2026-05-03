@@ -1,0 +1,449 @@
+/* halls.css - обновленный стиль */
+
+.halls {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #0d0b0b, var(--dark));
+  position: relative;
+  overflow: hidden;
+}
+
+.halls-bg-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(183, 154, 31, 0.05), transparent);
+  pointer-events: none;
+}
+
+.halls.visible .hall-card {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.halls-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: var(--gold);
+  background: rgba(183, 154, 31, 0.1);
+  padding: 6px 16px;
+  border-radius: 40px;
+  backdrop-filter: blur(10px);
+}
+
+.tag-icon {
+  font-size: 12px;
+}
+
+.halls-header h2 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #fff, #ccc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.halls-header .gold-text {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.title-decoration {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.title-decoration span {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.title-decoration span:nth-child(1) {
+  width: 40px;
+}
+
+.title-decoration span:nth-child(2) {
+  width: 20px;
+}
+
+.title-decoration span:nth-child(3) {
+  width: 60px;
+}
+
+.halls-subtitle {
+  color: var(--text-muted);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Grid */
+.halls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+/* Hall Card Premium */
+.hall-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(15, 15, 15, 0.98));
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(183, 154, 31, 0.2);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.hall-card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(183, 154, 31, 0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.hall-card-gold-border {
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, var(--gold), transparent, var(--gold));
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.hall-card.hovered {
+  transform: translateY(-10px);
+  border-color: var(--gold);
+}
+
+.hall-card.hovered .hall-card-glow {
+  opacity: 1;
+}
+
+.hall-card.hovered .hall-card-gold-border {
+  opacity: 1;
+}
+
+/* Card Image */
+.hall-card-image {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hall-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.hall-card.hovered .hall-image {
+  transform: scale(1.05);
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  color: var(--gold);
+  transition: transform 0.5s ease;
+}
+
+.hall-card.hovered .image-placeholder {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.8));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hall-card.hovered .image-overlay {
+  opacity: 1;
+}
+
+.hall-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--dark);
+  z-index: 2;
+}
+
+/* Card Info */
+.hall-card-info {
+  padding: 24px;
+  position: relative;
+}
+
+.hall-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hall-header h4 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-light);
+  transition: color 0.3s ease;
+}
+
+.hall-card.hovered .hall-header h4 {
+  color: var(--gold);
+}
+
+.hall-rating {
+  display: flex;
+  gap: 4px;
+  color: var(--gold);
+  font-size: 12px;
+}
+
+.hall-description {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.hall-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.hall-feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.hall-card.hovered .hall-feature {
+  background: rgba(183, 154, 31, 0.1);
+}
+
+.feature-icon {
+  font-size: 18px;
+  color: var(--gold);
+}
+
+.hall-feature span {
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+/* Button */
+.hall-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: transparent;
+  border: 2px solid var(--gold);
+  border-radius: 40px;
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.hall-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(183, 154, 31, 0.3), transparent);
+  transition: all 0.5s ease;
+  transform: translate(-50%, -50%);
+}
+
+.hall-btn:hover::before {
+  width: 200%;
+  height: 200%;
+}
+
+.hall-btn:hover {
+  background: var(--gold);
+  color: var(--dark);
+  transform: translateY(-2px);
+  gap: 15px;
+}
+
+.btn-arrow {
+  transition: transform 0.3s ease;
+}
+
+.hall-btn:hover .btn-arrow {
+  transform: translateX(5px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 30px;
+  }
+  
+  .halls-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .halls {
+    padding: 60px 0;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+  
+  .halls-header h2 {
+    font-size: 36px;
+  }
+  
+  .halls-subtitle {
+    font-size: 16px;
+  }
+  
+  .halls-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hall-card-image {
+    height: 200px;
+  }
+  
+  .hall-header h4 {
+    font-size: 20px;
+  }
+  
+  .hall-description {
+    font-size: 13px;
+  }
+  
+  .hall-feature span {
+    font-size: 13px;
+  }
+  
+  .hall-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .halls-header h2 {
+    font-size: 28px;
+  }
+  
+  .section-tag {
+    font-size: 11px;
+  }
+  
+  .halls-subtitle {
+    font-size: 14px;
+  }
+  
+  .hall-card-image {
+    height: 180px;
+  }
+  
+  .hall-card-info {
+    padding: 18px;
+  }
+  
+  .hall-header h4 {
+    font-size: 18px;
+  }
+  
+  .hall-feature {
+    padding: 6px 10px;
+  }
+  
+  .feature-icon {
+    font-size: 16px;
+  }
+  
+  .hall-feature span {
+    font-size: 12px;
+  }
+}
