@@ -1,12 +1,13 @@
 .page-header {
     position: relative;
     height: 50vh;
-    min-height: 400px;
+    min-height: 420px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     overflow: hidden;
+    background-color: #0a0a0aa5; /* Темный фон на случай если картинка не загрузится */
 }
 
 .page-header-bg {
@@ -16,6 +17,8 @@
     background-position: center;
     transform: scale(1.05);
     transition: transform 0.5s ease;
+    opacity: 0.4;
+    background-image: url(/images/gallery/5.png);
 }
 
 .page-header:hover .page-header-bg {
@@ -25,7 +28,8 @@
 .page-header-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7));
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.253), rgba(0, 0, 0, 0.253));
+    z-index: 1;
 }
 
 .page-header-content {
@@ -40,7 +44,7 @@
 }
 
 .breadcrumbs a {
-    color: var(--gold);
+    color: #d4af37; /* Золотой цвет */
     text-decoration: none;
     transition: opacity 0.3s;
 }
@@ -50,12 +54,12 @@
 }
 
 .breadcrumbs span {
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.6);
     margin: 0 8px;
 }
 
 .breadcrumbs .current {
-    color: var(--gold);
+    color: #d4af37;
 }
 
 .page-header-title {
@@ -63,19 +67,32 @@
     font-weight: 800;
     margin-bottom: 20px;
     letter-spacing: 2px;
+    color: #ffffff; /* Белый цвет текста */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .page-header-subtitle {
     font-size: 20px;
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.8);
     max-width: 600px;
     margin: 0 auto;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 768px) {
     .page-header {
         height: 40vh;
-        min-height: 300px;
+        min-height: 320px;
     }
 
     .page-header-title {

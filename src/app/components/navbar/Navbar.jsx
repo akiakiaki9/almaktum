@@ -76,7 +76,7 @@ export default function Navbar() {
     };
 
     const navLinks = [
-        { href: '/', label: 'Главная', section: 'hero' },
+        { href: '/', label: 'Главная', section: null },
         { href: '/about', label: 'О нас', section: null },
         { href: '/menu', label: 'Меню', section: null },
         { href: '/gallery', label: 'Галерея', section: null },
@@ -126,12 +126,11 @@ export default function Navbar() {
                     <Link href="/" className="logo" onClick={() => setIsMenuOpen(false)}>
                         <div className="logo-wrapper">
                             <div className="logo-icon-wrapper">
-                                {/* Замените src на путь к вашему логотипу */}
                                 <Image
-                                    src="/logo.png"
+                                    src="/images/logo.PNG"
                                     alt="Al Maktum Logo"
-                                    width={48}
-                                    height={48}
+                                    width={64}
+                                    height={64}
                                     className="logo-image"
                                     priority
                                 />

@@ -1,6 +1,20 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { 
+  IoClose, 
+  IoCalendarOutline, 
+  IoTimeOutline, 
+  IoPeopleOutline, 
+  IoRestaurantOutline,
+  IoCallOutline,
+  IoPersonOutline,
+  IoChatbubbleOutline,
+  IoCheckmarkCircle,
+  IoWarningOutline
+} from 'react-icons/io5';
+import { FaStar } from 'react-icons/fa';
 import './modal.css';
 
 export default function BookingModal({ isOpen, onClose, preselectedHall }) {
@@ -15,6 +29,47 @@ export default function BookingModal({ isOpen, onClose, preselectedHall }) {
     });
     const [status, setStatus] = useState(null);
     const [availableTimes, setAvailableTimes] = useState([]);
+    const [mounted, setMounted] = useState(false);
+    const scrollPositionRef = useRef(0);
+
+    // Монтируем портал
+    useEffect(() => {
+        setMounted(true);
+        return () => setMounted(false);
+    }, []);
+
+    // Блокируем скролл при открытии модалки
+    useEffect(() => {
+        if (isOpen) {
+            // Сохраняем текущую позицию скролла
+            scrollPositionRef.current = window.scrollY;
+            
+            // Применяем стили для блокировки
+            document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollPositionRef.current}px`;
+            document.body.style.width = '100%';
+            document.body.style.paddingRight = '0px';
+        } else {
+            // Восстанавливаем скролл
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            document.body.style.paddingRight = '';
+            
+            // Возвращаемся к сохраненной позиции
+            window.scrollTo(0, scrollPositionRef.current);
+        }
+        
+        return () => {
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            document.body.style.paddingRight = '';
+        };
+    }, [isOpen]);
 
     // Доступные времена для бронирования
     useEffect(() => {
@@ -27,12 +82,12 @@ export default function BookingModal({ isOpen, onClose, preselectedHall }) {
     }, []);
 
     const hallsList = [
-        { value: 'main', label: '🏛️ Основной зал', capacity: 150, price: 'от 50,000 сум/чел' },
-        { value: 'cabins', label: '🚪 Кабины', capacity: 40, price: 'от 80,000 сум/чел' },
-        { value: 'banquet', label: '🎉 Банкетный зал', capacity: 200, price: 'от 45,000 сум/чел' },
-        { value: 'wedding', label: '💒 Свадебный зал', capacity: 300, price: 'от 40,000 сум/чел' },
-        { value: 'family', label: '👨‍👩‍👧‍👦 Семейный зал', capacity: 50, price: 'от 60,000 сум/чел' },
-        { value: 'terrace', label: '🌿 Терраса', capacity: 80, price: 'от 55,000 сум/чел' }
+        { value: 'main', label: 'Основной зал', icon: <IoRestaurantOutline />, capacity: 150, price: 'от 50,000 сум/чел' },
+        { value: 'cabins', label: 'Кабины', icon: <IoRestaurantOutline />, capacity: 40, price: 'от 80,000 сум/чел' },
+        { value: 'banquet', label: 'Банкетный зал', icon: <IoRestaurantOutline />, capacity: 200, price: 'от 45,000 сум/чел' },
+        { value: 'wedding', label: 'Свадебный зал', icon: <IoRestaurantOutline />, capacity: 300, price: 'от 40,000 сум/чел' },
+        { value: 'family', label: 'Семейный зал', icon: <IoRestaurantOutline />, capacity: 50, price: 'от 60,000 сум/чел' },
+        { value: 'terrace', label: 'Терраса', icon: <IoRestaurantOutline />, capacity: 80, price: 'от 55,000 сум/чел' }
     ];
 
     const selectedHallData = hallsList.find(h => h.value === formData.hall);
@@ -85,21 +140,27 @@ export default function BookingModal({ isOpen, onClose, preselectedHall }) {
         return `${yyyy}-${mm}-${dd}`;
     };
 
-    if (!isOpen) return null;
-
-    return (
+    // Контент модалки
+    const modalContent = (
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content booking-modal" onClick={e => e.stopPropagation()}>
-                <button className="modal-close" onClick={onClose}>×</button>
+                <button className="modal-close" onClick={onClose}>
+                    <IoClose />
+                </button>
 
                 <div className="modal-header">
-                    <h2>📅 Бронирование стола</h2>
+                    <div className="header-icon">
+                        <FaStar />
+                    </div>
+                    <h2>Бронирование стола</h2>
                     <p>Заполните форму и мы свяжемся с вами для подтверждения</p>
                 </div>
 
                 {status === 'success' ? (
                     <div className="booking-success">
-                        <div className="success-icon">✓</div>
+                        <div className="success-icon">
+                            <IoCheckmarkCircle />
+                        </div>
                         <h3>Заявка отправлена!</h3>
                         <p>Мы свяжемся с вами в ближайшее время для подтверждения бронирования</p>
                         <button className="btn-gold" onClick={onClose}>Закрыть</button>
@@ -107,7 +168,10 @@ export default function BookingModal({ isOpen, onClose, preselectedHall }) {
                 ) : (
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label>👤 Ваше имя *</label>
+                            <label>
+                                <IoPersonOutline className="label-icon" />
+                                Ваше имя *
+                            </label>
                             <input
                                 type="text"
                                 placeholder="Как к вам обращаться?"
@@ -119,7 +183,10 @@ export default function BookingModal({ isOpen, onClose, preselectedHall }) {
                         </div>
 
                         <div className="form-group">
-                            <label>📞 Номер телефона *</label>
+                            <label>
+                                <IoCallOutline className="label-icon" />
+                                Номер телефона *
+                            </label>
                             <input
                                 type="tel"
                                 placeholder="+998 (__) ___-__-__"
@@ -132,7 +199,10 @@ export default function BookingModal({ isOpen, onClose, preselectedHall }) {
 
                         <div className="form-row">
                             <div className="form-group">
-                                <label>📅 Дата *</label>
+                                <label>
+                                    <IoCalendarOutline className="label-icon" />
+                                    Дата *
+                                </label>
                                 <input
                                     type="date"
                                     required
@@ -145,7 +215,10 @@ export default function BookingModal({ isOpen, onClose, preselectedHall }) {
                             </div>
 
                             <div className="form-group">
-                                <label>⏰ Время *</label>
+                                <label>
+                                    <IoTimeOutline className="label-icon" />
+                                    Время *
+                                </label>
                                 <select
                                     required
                                     value={formData.time}
@@ -162,7 +235,10 @@ export default function BookingModal({ isOpen, onClose, preselectedHall }) {
 
                         <div className="form-row">
                             <div className="form-group">
-                                <label>👥 Количество гостей *</label>
+                                <label>
+                                    <IoPeopleOutline className="label-icon" />
+                                    Количество гостей *
+                                </label>
                                 <select
                                     value={formData.guests}
                                     onChange={e => setFormData({ ...formData, guests: e.target.value })}
@@ -175,7 +251,10 @@ export default function BookingModal({ isOpen, onClose, preselectedHall }) {
                             </div>
 
                             <div className="form-group">
-                                <label>🏛️ Выберите зал *</label>
+                                <label>
+                                    <IoRestaurantOutline className="label-icon" />
+                                    Выберите зал *
+                                </label>
                                 <select
                                     value={formData.hall}
                                     onChange={e => setFormData({ ...formData, hall: e.target.value })}
@@ -193,26 +272,27 @@ export default function BookingModal({ isOpen, onClose, preselectedHall }) {
                         {selectedHallData && (
                             <div className="hall-info-card">
                                 <div className="hall-info-icon">
-                                    {selectedHallData.value === 'main' && '🏛️'}
-                                    {selectedHallData.value === 'cabins' && '🚪'}
-                                    {selectedHallData.value === 'banquet' && '🎉'}
-                                    {selectedHallData.value === 'wedding' && '💒'}
-                                    {selectedHallData.value === 'family' && '👨‍👩‍👧‍👦'}
-                                    {selectedHallData.value === 'terrace' && '🌿'}
+                                    {selectedHallData.icon}
                                 </div>
                                 <div className="hall-info-details">
                                     <h4>{selectedHallData.label}</h4>
                                     <p>👥 Вместимость: до {selectedHallData.capacity} человек</p>
                                     <p>💰 Минимальный чек: {selectedHallData.price}</p>
                                     {parseInt(formData.guests) > selectedHallData.capacity && (
-                                        <p className="hall-warning">⚠️ Количество гостей превышает вместимость зала!</p>
+                                        <p className="hall-warning">
+                                            <IoWarningOutline />
+                                            Количество гостей превышает вместимость зала!
+                                        </p>
                                     )}
                                 </div>
                             </div>
                         )}
 
                         <div className="form-group">
-                            <label>💬 Дополнительные пожелания</label>
+                            <label>
+                                <IoChatbubbleOutline className="label-icon" />
+                                Дополнительные пожелания
+                            </label>
                             <textarea
                                 placeholder="Особые пожелания, аллергии, праздничный повод и т.д."
                                 rows="3"
@@ -246,4 +326,9 @@ export default function BookingModal({ isOpen, onClose, preselectedHall }) {
             </div>
         </div>
     );
+
+    // Рендерим через портал только если модалка открыта и компонент смонтирован
+    if (!isOpen || !mounted) return null;
+    
+    return createPortal(modalContent, document.body);
 }

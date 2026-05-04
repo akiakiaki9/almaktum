@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCart } from '@/context/CartContext';
 import { IoClose, IoAdd, IoRemove, IoTrash } from 'react-icons/io5';
 import './cart.css';
@@ -16,8 +16,59 @@ export default function Cart({ isOpen, onClose }) {
     comment: ''
   });
 
+  // Блокируем скролл при открытии корзины
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${window.scrollY}px`;
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+    };
+  }, [isOpen]);
+
+  // Блокируем скролл при открытии модалки оформления заказа
+  useEffect(() => {
+    if (isOrderModalOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else if (!isOpen) {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+    
+    return () => {
+      if (!isOrderModalOpen && !isOpen) {
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+      }
+    };
+  }, [isOrderModalOpen, isOpen]);
+
   const handleOpenOrderModal = () => {
     setIsOrderModalOpen(true);
+  };
+
+  const handleCloseOrderModal = () => {
+    if (!orderStatus || orderStatus !== 'loading') {
+      setIsOrderModalOpen(false);
+    }
   };
 
   const handleSubmitOrder = async () => {
@@ -117,9 +168,9 @@ export default function Cart({ isOpen, onClose }) {
 
       {/* Модалка оформления заказа */}
       {isOrderModalOpen && (
-        <div className="modal-overlay" onClick={() => !orderStatus && setIsOrderModalOpen(false)}>
+        <div className="modal-overlay" onClick={handleCloseOrderModal}>
           <div className="modal-content order-modal" onClick={e => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => !orderStatus && setIsOrderModalOpen(false)}>×</button>
+            <button className="modal-close" onClick={handleCloseOrderModal}>×</button>
             <h2>📝 Оформление заказа</h2>
             
             {orderStatus === 'success' ? (

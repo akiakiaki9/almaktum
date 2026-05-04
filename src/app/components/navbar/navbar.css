@@ -1,10 +1,10 @@
-/* navbar.css */
+/* navbar.css - исправленная версия с большим логотипом */
 
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 100;
     padding: 20px 0;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     background: transparent;
@@ -46,18 +46,18 @@
     position: relative;
 }
 
-/* Логотип */
+/* Логотип - УВЕЛИЧЕННЫЙ */
 .logo {
     text-decoration: none;
     cursor: pointer;
     position: relative;
-    z-index: 1002;
+    z-index: 999;
 }
 
 .logo-wrapper {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
     transition: transform 0.3s ease;
 }
 
@@ -67,8 +67,8 @@
 
 .logo-icon-wrapper {
     position: relative;
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,7 +91,7 @@
     position: absolute;
     top: -8px;
     right: -8px;
-    font-size: 18px;
+    font-size: 22px;
     color: var(--gold);
     opacity: 0;
     transform: scale(0) rotate(-15deg);
@@ -110,19 +110,20 @@
 }
 
 .logo-name {
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 2px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 3px;
     color: var(--text-light);
 }
 
 .logo-surname {
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 3px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--gold);
 }
 
-/* Навигационные ссылки */
+/* Навигационные ссылки - ДЕСКТОП */
 .nav-links {
     display: flex;
     gap: 48px;
@@ -132,7 +133,7 @@
 .nav-link {
     color: var(--text-light);
     text-decoration: none;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
@@ -143,6 +144,7 @@
 .nav-link-text {
     position: relative;
     z-index: 1;
+    color: var(--text-light);
 }
 
 .nav-link-hover {
@@ -160,8 +162,8 @@
     width: 100%;
 }
 
-.nav-link:hover,
-.nav-link.active {
+.nav-link:hover .nav-link-text,
+.nav-link.active .nav-link-text {
     color: var(--gold);
 }
 
@@ -175,11 +177,11 @@
 .booking-btn {
     background: linear-gradient(135deg, var(--gold-dark), var(--gold));
     border: none;
-    padding: 10px 24px;
+    padding: 12px 28px;
     border-radius: 40px;
     color: var(--dark);
     font-weight: 600;
-    font-size: 14px;
+    font-size: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -213,7 +215,7 @@
 .cart-btn {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(183, 154, 31, 0.3);
-    padding: 10px;
+    padding: 12px;
     border-radius: 50%;
     color: var(--gold);
     cursor: pointer;
@@ -222,9 +224,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    width: 44px;
-    height: 44px;
+    font-size: 22px;
+    width: 50px;
+    height: 50px;
 }
 
 .cart-btn:hover {
@@ -240,10 +242,10 @@
     right: -5px;
     background: linear-gradient(135deg, var(--gold), var(--gold-dark));
     color: var(--dark);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -253,25 +255,22 @@
 }
 
 @keyframes pulse {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: scale(1);
     }
-
     50% {
         transform: scale(1.1);
     }
 }
 
-/* Бургер меню (кастомное) */
+/* Бургер меню */
 .mobile-menu-btn {
     display: none;
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
-    z-index: 1002;
+    z-index: 999;
 }
 
 .menu-icon {
@@ -362,10 +361,42 @@
     justify-content: center;
 }
 
-/* Адаптивность */
+/* ============================================ */
+/* АДАПТИВНОСТЬ С УВЕЛИЧЕННЫМ ЛОГОТИПОМ */
+/* ============================================ */
+
 @media (max-width: 1024px) {
     .nav-container {
         padding: 0 24px;
+    }
+
+    .logo-icon-wrapper {
+        width: 56px;
+        height: 56px;
+    }
+
+    .logo-name {
+        font-size: 24px;
+    }
+
+    .logo-surname {
+        font-size: 15px;
+    }
+
+    .booking-btn span {
+        display: none;
+    }
+
+    .booking-btn {
+        padding: 12px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        z-index: 100;
     }
 
     .nav-links {
@@ -375,14 +406,14 @@
         width: 100%;
         max-width: 400px;
         height: 100vh;
-        background: rgba(10, 8, 8, 0.98);
-        backdrop-filter: blur(20px);
+        background: linear-gradient(135deg, #0a0808, #111111);
+        backdrop-filter: blur(30px);
         flex-direction: column;
         justify-content: center;
         gap: 32px;
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 1001;
-        padding: 80px 0 40px;
+        z-index: 100;
+        padding: 80px 32px 40px;
         box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
     }
 
@@ -391,14 +422,26 @@
     }
 
     .nav-link {
-        font-size: 20px;
-        padding: 12px 0;
+        font-size: 22px;
+        padding: 16px 0;
         width: 100%;
         text-align: center;
         opacity: 0;
         transform: translateX(30px);
         animation: slideIn 0.3s forwards;
-        color: var(--text-light);
+        color: #ffffff !important;
+        display: block;
+    }
+
+    .nav-link-text {
+        color: #ffffff !important;
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .nav-link:hover .nav-link-text,
+    .nav-link.active .nav-link-text {
+        color: var(--gold) !important;
     }
 
     @keyframes slideIn {
@@ -408,23 +451,20 @@
         }
     }
 
+    .nav-links .nav-link:nth-child(1) { animation-delay: 0.05s; }
+    .nav-links .nav-link:nth-child(2) { animation-delay: 0.1s; }
+    .nav-links .nav-link:nth-child(3) { animation-delay: 0.15s; }
+    .nav-links .nav-link:nth-child(4) { animation-delay: 0.2s; }
+    .nav-links .nav-link:nth-child(5) { animation-delay: 0.25s; }
+
     .mobile-nav-actions {
         display: flex;
+        flex-direction: column;
+        margin-top: 40px;
     }
 
-    .booking-btn span {
-        display: none;
-    }
-
-    .booking-btn {
-        padding: 10px;
-        border-radius: 50%;
-        width: 44px;
-        height: 44px;
-    }
-
-    .mobile-menu-btn {
-        display: block;
+    .logo {
+        z-index: 100;
     }
 }
 
@@ -441,57 +481,58 @@
         padding: 0 20px;
     }
 
-    .logo-icon-wrapper {
-        width: 40px;
-        height: 40px;
+    .logo-wrapper {
+        gap: 12px;
     }
 
-    .logo-image {
-        width: 40px;
-        height: 40px;
+    .logo-icon-wrapper {
+        width: 48px;
+        height: 48px;
+    }
+
+    .logo-name {
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+
+    .logo-surname {
+        font-size: 13px;
+        letter-spacing: 3px;
     }
 
     .logo-crown {
-        font-size: 14px;
+        font-size: 18px;
         top: -6px;
         right: -6px;
     }
 
-    .logo-name {
-        font-size: 18px;
-    }
-
-    .logo-surname {
-        font-size: 12px;
-        letter-spacing: 2px;
-    }
-
     .cart-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
     }
 
     .booking-btn {
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
     }
 
     .nav-links {
         max-width: 100%;
+        padding: 80px 24px 40px;
     }
 
     .nav-link {
-        font-size: 18px;
-        color: #fff !important;
+        font-size: 20px;
+        padding: 14px 0;
     }
+
     .nav-link-text {
-         color: #fff !important;
+        font-size: 20px !important;
     }
 
     .mobile-nav-actions {
-        flex-direction: column;
-        padding: 0 20px;
+        padding: 0;
         gap: 12px;
     }
 
@@ -503,26 +544,27 @@
 }
 
 @media (max-width: 580px) {
-    .logo-text {
-        display: flex;
+    .logo-wrapper {
+        gap: 10px;
+    }
+
+    .logo-icon-wrapper {
+        width: 42px;
+        height: 42px;
     }
 
     .logo-name {
-        font-size: 16px;
+        font-size: 18px;
+        letter-spacing: 1.5px;
     }
 
     .logo-surname {
         font-size: 11px;
+        letter-spacing: 2.5px;
     }
 
-    .logo-icon-wrapper {
-        width: 36px;
-        height: 36px;
-    }
-
-    .logo-image {
-        width: 36px;
-        height: 36px;
+    .logo-crown {
+        font-size: 16px;
     }
 }
 
@@ -531,68 +573,63 @@
         padding: 0 16px;
     }
 
-    .logo-text {
-        /* Убедитесь, что текст виден */
-        display: flex;
+    .logo-wrapper {
+        gap: 8px;
+    }
+
+    .logo-icon-wrapper {
+        width: 38px;
+        height: 38px;
     }
 
     .logo-name {
-        font-size: 14px;
+        font-size: 16px;
         letter-spacing: 1px;
     }
 
     .logo-surname {
         font-size: 10px;
-        letter-spacing: 1.5px;
-    }
-
-    .logo-icon-wrapper {
-        width: 32px;
-        height: 32px;
-    }
-
-    .logo-image {
-        width: 32px;
-        height: 32px;
+        letter-spacing: 2px;
     }
 
     .logo-crown {
-        font-size: 12px;
+        font-size: 14px;
         top: -5px;
         right: -5px;
     }
 
     .cart-btn,
     .booking-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
     }
 
     .cart-badge {
-        width: 18px;
-        height: 18px;
-        font-size: 10px;
+        width: 20px;
+        height: 20px;
+        font-size: 11px;
         top: -4px;
         right: -4px;
     }
 
-    .nav-link {
-        font-size: 16px;
+    .nav-links {
+        padding: 70px 20px 30px;
     }
+
+    .nav-link {
+        font-size: 18px;
+        padding: 12px 0;
+    }
+
     .nav-link-text {
-         color: #fff !important;
+        font-size: 18px !important;
     }
 
     .mobile-booking-btn,
     .mobile-cart-btn {
         padding: 10px;
         font-size: 14px;
-    }
-
-    .mobile-booking-btn svg,
-    .mobile-cart-btn svg {
-        font-size: 18px;
     }
 }
 
@@ -603,8 +640,8 @@
 }
 
 .logo-skeleton {
-    width: 120px;
-    height: 48px;
+    width: 160px;
+    height: 64px;
     background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
@@ -632,7 +669,7 @@
 
 .skeleton-btn {
     width: 100px;
-    height: 44px;
+    height: 50px;
     background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
@@ -645,7 +682,7 @@
     }
 
     .skeleton-btn:first-child {
-        width: 44px;
+        width: 50px;
     }
 }
 
@@ -653,7 +690,6 @@
     0% {
         background-position: -200% 0;
     }
-
     100% {
         background-position: 200% 0;
     }

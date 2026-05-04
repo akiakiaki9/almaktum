@@ -27,7 +27,7 @@
 .hero-bg-image {
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80');
+  background-image: url('/images/hero.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

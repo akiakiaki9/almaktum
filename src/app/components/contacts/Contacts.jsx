@@ -276,8 +276,7 @@ export default function Contact() {
                                 <div>
                                     <h4>Мессенджеры</h4>
                                     <div className="messengers">
-                                        <a href="https://t.me/+998907449870" target="_blank">Telegram</a>
-                                        <a href="https://wa.me/998907449870" target="_blank">WhatsApp</a>
+                                        <a href="https://www.instagram.com/al_maktum_bukhara/" target="_blank">Instagram</a>
                                     </div>
                                 </div>
                             </div>

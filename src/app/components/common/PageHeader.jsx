@@ -9,7 +9,7 @@ export default function PageHeader({
     return (
         <section className="page-header">
             <div className="page-header-overlay"></div>
-            <div className="page-header-bg" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
+            <div className="page-header-bg"></div>
             <div className="page-header-content">
                 <div className="container">
                     {breadcrumbs && (

@@ -1,7 +1,101 @@
+/* about-page.css - обновленная версия */
+
+.about-page {
+    background: linear-gradient(135deg, #0d0b0b, var(--dark));
+}
+
+.about-page.visible .section-header {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Section Header */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: var(--gold);
+    background: rgba(183, 154, 31, 0.1);
+    padding: 6px 16px;
+    border-radius: 40px;
+    backdrop-filter: blur(10px);
+}
+
+.tag-icon {
+    font-size: 14px;
+}
+
+.section-header h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #fff, #ccc);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-header .gold-text {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.title-decoration {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.title-decoration span {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.title-decoration span:nth-child(1) { width: 40px; }
+.title-decoration span:nth-child(2) { width: 20px; }
+.title-decoration span:nth-child(3) { width: 60px; }
+
+.section-header p {
+    color: var(--text-muted);
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 /* Видео секция */
 .about-video-section {
-    padding: 80px 0;
-    background: var(--dark);
+    padding: 60px 0 80px;
+    background: linear-gradient(135deg, #0d0b0b, var(--dark));
 }
 
 .video-wrapper {
@@ -33,78 +127,195 @@
     bottom: 20px;
     left: 20px;
     background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
     padding: 8px 16px;
     border-radius: 30px;
     color: var(--gold);
     font-size: 14px;
 }
 
-/* История */
-.about-story {
-    padding: 100px 0;
-    background: linear-gradient(135deg, #0d0b0b, var(--dark));
+/* Танцевальный вечер */
+.dance-evening-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #0a0808, #0d0b0b);
 }
 
-.story-grid {
+.dance-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 50px;
     align-items: center;
 }
 
-.story-text h2 {
-    font-size: 48px;
-    margin: 16px 0 24px;
-}
-
-.story-text p {
-    color: var(--text-muted);
-    line-height: 1.8;
-    margin-bottom: 20px;
-}
-
-.story-stats {
+.dance-features {
     display: flex;
-    gap: 40px;
-    margin-top: 40px;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 32px;
 }
 
-.stat {
-    text-align: center;
+.dance-feature {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    transition: all 0.3s ease;
 }
 
-.stat-number {
-    display: block;
+.dance-feature:hover {
+    background: rgba(183, 154, 31, 0.08);
+    transform: translateX(5px);
+}
+
+.dance-feature .feature-icon {
     font-size: 32px;
-    font-weight: 700;
     color: var(--gold);
 }
 
-.stat-label {
-    font-size: 14px;
-    color: var(--text-muted);
+.dance-feature h4 {
+    font-size: 18px;
+    margin-bottom: 4px;
+    color: var(--text-light);
 }
 
-.story-image .image-stack {
+.dance-feature p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.dance-description p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.dance-btn {
+    padding: 14px 32px;
+    font-size: 16px;
+}
+
+.dance-gallery {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-.image-stack img {
+.dance-gallery img {
     width: 100%;
     border-radius: 20px;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease;
 }
 
-.image-stack img:hover {
+.dance-gallery img:hover {
     transform: scale(1.02);
+}
+
+/* Концерты */
+.concert-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #0d0b0b, #0a0808);
+}
+
+.concert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+}
+
+.concert-card {
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(15, 15, 15, 0.98));
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(183, 154, 31, 0.2);
+    transition: all 0.3s ease;
+}
+
+.concert-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+}
+
+.concert-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.concert-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.concert-card:hover .concert-image img {
+    transform: scale(1.05);
+}
+
+.concert-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.concert-card:hover .concert-overlay {
+    opacity: 1;
+}
+
+.play-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(183, 154, 31, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.concert-info {
+    padding: 24px;
+}
+
+.concert-info h4 {
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: var(--gold);
+}
+
+.concert-info > p {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.concert-schedule {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.concert-schedule span {
+    background: rgba(183, 154, 31, 0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--gold);
 }
 
 /* Философия */
 .about-philosophy {
     padding: 100px 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=1600');
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), 
+                url('https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=1600');
     background-size: cover;
     background-attachment: fixed;
     text-align: center;
@@ -133,96 +344,163 @@
     color: var(--text-muted);
 }
 
-/* Команда */
-.about-team {
-    padding: 100px 0;
-    background: var(--dark);
+/* Галерея событий */
+.events-gallery {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #0a0808, #0d0b0b);
 }
 
-.team-header {
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.team-header h2 {
-    font-size: 48px;
-    margin: 16px 0;
-}
-
-.team-grid {
+.gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
 }
 
-.team-card {
-    text-align: center;
-    padding: 30px;
-    background: linear-gradient(135deg, #0f0d0d, #0a0808);
-    border-radius: 20px;
-    border: 1px solid rgba(212, 175, 55, 0.1);
-    transition: all 0.3s;
-}
-
-.team-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--gold);
-}
-
-.team-image {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
+.gallery-item {
+    position: relative;
+    border-radius: 16px;
     overflow: hidden;
-    border: 3px solid var(--gold);
+    aspect-ratio: 1;
+    cursor: pointer;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
 }
 
-.team-image img {
+.gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-.team-card h4 {
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay h4 {
     color: var(--gold);
     font-size: 18px;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
-.team-name {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.team-desc {
+.gallery-category {
     color: var(--text-muted);
-    font-size: 14px;
+    font-size: 12px;
+}
+
+/* Видео галерея */
+.video-gallery-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #0d0b0b, #0a0808);
+}
+
+.video-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.video-gallery-card {
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(15, 15, 15, 0.98));
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.video-gallery-card:hover {
+    transform: translateY(-5px);
+}
+
+.video-thumbnail {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.video-gallery-card:hover .video-thumbnail img {
+    transform: scale(1.05);
+}
+
+.video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(183, 154, 31, 0.9);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark);
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.video-play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-gallery-card h4 {
+    padding: 16px 16px 8px;
+    font-size: 18px;
+    color: var(--gold);
+}
+
+.video-gallery-card p {
+    padding: 0 16px 16px;
+    color: var(--text-muted);
+    font-size: 13px;
 }
 
 /* Преимущества */
 .about-features {
     padding: 80px 0;
-    background: linear-gradient(135deg, #0d0b0b, var(--dark));
+    background: linear-gradient(135deg, #0a0808, #0d0b0b);
 }
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
 }
 
 .feature-item {
     text-align: center;
-    padding: 40px;
-    background: rgba(212, 175, 55, 0.05);
+    padding: 40px 30px;
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 20px;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
 .feature-item:hover {
-    background: rgba(212, 175, 55, 0.1);
+    background: rgba(183, 154, 31, 0.08);
     transform: translateY(-5px);
 }
 
@@ -232,32 +510,161 @@
 }
 
 .feature-item h4 {
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 12px;
+    color: var(--gold);
 }
 
 .feature-item p {
     color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* Социальные сети */
+.social-section {
+    padding: 60px 0 80px;
+    background: linear-gradient(135deg, #0d0b0b, #0a0808);
+    text-align: center;
+}
+
+.social-content h3 {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.social-content p {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(183, 154, 31, 0.2);
+    border-radius: 50px;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+}
+
+.social-link.instagram:hover {
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    color: white;
+    border-color: transparent;
+}
+
+.social-link.telegram:hover {
+    background: #0088cc;
+    color: white;
+    border-color: transparent;
+}
+
+.social-link.youtube:hover {
+    background: #ff0000;
+    color: white;
+    border-color: transparent;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 30px;
+    }
+    
+    .section-header h2 {
+        font-size: 36px;
+    }
+    
+    .dance-content {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {
-    .story-grid {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .section-header h2 {
+        font-size: 28px;
+    }
+    
+    .section-header p {
+        font-size: 14px;
+    }
+    
+    .dance-gallery {
         grid-template-columns: 1fr;
     }
-
-    .story-text h2 {
-        font-size: 32px;
+    
+    .concert-grid {
+        grid-template-columns: 1fr;
     }
-
-    .story-stats {
+    
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .video-gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .social-link {
+        width: 200px;
         justify-content: center;
     }
-
+    
     .philosophy-quote h3 {
         font-size: 24px;
     }
+    
+    .philosophy-quote p {
+        font-size: 16px;
+    }
+}
 
-    .team-header h2 {
-        font-size: 32px;
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+    
+    .section-header h2 {
+        font-size: 24px;
+    }
+    
+    .section-tag {
+        font-size: 11px;
+    }
+    
+    .dance-feature {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .concert-info h4 {
+        font-size: 18px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
     }
 }
