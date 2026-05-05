@@ -77,7 +77,6 @@ export default function Navbar() {
 
     const navLinks = [
         { href: '/', label: 'Главная', section: null },
-        { href: '/about', label: 'О нас', section: null },
         { href: '/menu', label: 'Меню', section: null },
         { href: '/gallery', label: 'Галерея', section: null },
         { href: '/contacts', label: 'Контакты', section: null },

@@ -47,7 +47,6 @@ export default function Footer() {
 
   const navLinks = [
     { href: '#hero', label: 'Главная' },
-    { href: '/about', label: 'О нас' },
     { href: '/menu', label: 'Меню' },
     { href: '#halls', label: 'Залы' },
     { href: '/gallery', label: 'Галерея' },
