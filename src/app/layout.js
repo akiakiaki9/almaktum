@@ -60,10 +60,10 @@ export const metadata = {
     siteName: "Al Maktum Premium Restaurant",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/images/logo1.png",
         width: 1200,
         height: 630,
-        alt: "Al Maktum Premium Restaurant Интерьер",
+        alt: "Al Maktum Premium Restaurant Logo",
       },
     ],
     locale: "ru_RU",
@@ -73,7 +73,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Al Maktum | Премиум Ресторан в Бухаре",
     description: "Изысканная кухня, элегантный интерьер и безупречный сервис. Забронируйте столик в лучшем ресторане Бухары.",
-    images: ["/images/og-image.jpg"],
+    images: ["/images/logo1.png"],
     creator: "@almaktum",
     site: "@almaktum",
   },
@@ -103,13 +103,9 @@ export default function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-        {/* Favicon и иконки */}
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#d4af37" />
-        <meta name="msapplication-TileColor" content="#0a0808" />
+        {/* Favicon из логотипа */}
+        <link rel="icon" type="image/png" href="/images/logo1.png" />
+        <link rel="apple-touch-icon" href="/images/logo1.png" />
 
         {/* Структурированные данные Schema.org */}
         <script
@@ -120,8 +116,8 @@ export default function RootLayout({ children }) {
               "@type": "Restaurant",
               "name": "Al Maktum Premium Restaurant",
               "url": "https://almaktum.uz",
-              "logo": "https://almaktum.uz/images/logo.png",
-              "image": "https://almaktum.uz/images/og-image.jpg",
+              "logo": "https://almaktum.uz/images/logo1.png",
+              "image": "https://almaktum.uz/images/logo1.png",
               "description": "Премиум ресторан в центре Бухары с изысканной восточной и европейской кухней",
               "address": {
                 "@type": "PostalAddress",
@@ -164,7 +160,7 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "name": "Al Maktum Premium Restaurant",
-              "image": "https://almaktum.uz/images/logo.png",
+              "image": "https://almaktum.uz/images/logo1.png",
               "priceRange": "$$$",
               "telephone": "+998907449870",
               "address": {
@@ -189,7 +185,7 @@ export default function RootLayout({ children }) {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Al Maktum | Премиум Ресторан в Бухаре" />
         <meta property="og:description" content="Изысканная кухня, элегантный интерьер и безупречный сервис. Забронируйте столик в лучшем ресторане Бухары." />
-        <meta property="og:image" content="/images/og-image.jpg" />
+        <meta property="og:image" content="/images/logo1.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:url" content="https://almaktum.uz" />
@@ -202,7 +198,7 @@ export default function RootLayout({ children }) {
         <meta name="twitter:creator" content="@almaktum" />
         <meta name="twitter:title" content="Al Maktum | Премиум Ресторан в Бухаре" />
         <meta name="twitter:description" content="Изысканная кухня, элегантный интерьер и безупречный сервис. Лучший ресторан Бухары." />
-        <meta name="twitter:image" content="/images/og-image.jpg" />
+        <meta name="twitter:image" content="/images/logo1.png" />
 
         {/* Дополнительные SEO метатеги */}
         <meta name="geo.region" content="UZ-BU" />
@@ -215,7 +211,7 @@ export default function RootLayout({ children }) {
         <meta name="rating" content="General" />
 
         {/* Preload критических ресурсов */}
-        <link rel="preload" href="/images/logo.png" as="image" type="image/png" />
+        <link rel="preload" href="/images/logo1.png" as="image" type="image/png" />
         <link rel="preload" href="/styles/globals.css" as="style" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -223,9 +219,6 @@ export default function RootLayout({ children }) {
         {/* Canonical URL */}
         <link rel="canonical" href="https://almaktum.uz" />
         <link rel="alternate" href="https://almaktum.uz" hrefLang="x-default" />
-
-        {/* RSS Feed (если есть блог) */}
-        <link rel="alternate" type="application/rss+xml" title="Al Maktum Blog" href="/feed.xml" />
       </Head>
       <body>
         <CartProvider>
