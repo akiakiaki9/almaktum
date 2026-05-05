@@ -152,7 +152,7 @@ export default function Navbar() {
                                 onClick={(e) => handleNavClick(e, link)}
                                 style={{ animationDelay: `${index * 0.1}s` }}
                             >
-                                <span className="nav-link-text">{link.label}</span>
+                                <span className="nav-link-text" style={{ color: 'white' }}>{link.label}</span>
                                 <span className="nav-link-hover"></span>
                             </Link>
                         ))}

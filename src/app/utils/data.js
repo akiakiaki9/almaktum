@@ -155,7 +155,7 @@ export const halls = [
     name: "Основной зал", 
     capacity: 150, 
     price: "от 50,000 сум/чел",
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop",
+    image: "/images/gallery/4.png",
     description: "Просторный зал с элегантным интерьером для любых мероприятий"
   },
   { 
@@ -163,15 +163,15 @@ export const halls = [
     name: "Кабины", 
     capacity: 40, 
     price: "от 80,000 сум/чел",
-    image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600&h=400&fit=crop",
+    image: "",
     description: "Уютные отдельные кабинки для приватных встреч"
   },
   { 
     id: 3, 
     name: "Банкетный зал", 
-    capacity: 200, 
+    capacity: 60, 
     price: "от 45,000 сум/чел",
-    image: "https://images.unsplash.com/photo-1464366400600-7168b4c6b6df?w=600&h=400&fit=crop",
+    image: "/images/gallery/22.png",
     description: "Идеальное место для проведения банкетов и корпоративов"
   },
   { 
@@ -179,7 +179,7 @@ export const halls = [
     name: "Свадебный зал", 
     capacity: 300, 
     price: "от 40,000 сум/чел",
-    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&h=400&fit=crop",
+    image: "",
     description: "Роскошный зал для незабываемых свадебных торжеств"
   },
   { 
@@ -187,7 +187,7 @@ export const halls = [
     name: "Семейный зал", 
     capacity: 50, 
     price: "от 60,000 сум/чел",
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop",
+    image: "",
     description: "Теплая атмосфера для семейных праздников и встреч"
   },
   { 
@@ -195,7 +195,7 @@ export const halls = [
     name: "Терраса", 
     capacity: 80, 
     price: "от 55,000 сум/чел",
-    image: "https://images.unsplash.com/photo-1584225064785-c62a8b43d148?w=600&h=400&fit=crop",
+    image: "/images/gallery/14.png",
     description: "Летняя терраса с живописным видом и свежим воздухом"
   }
 ];

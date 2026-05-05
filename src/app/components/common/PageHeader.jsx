@@ -3,7 +3,6 @@ import './page-header.css';
 export default function PageHeader({
     title,
     subtitle,
-    backgroundImage,
     breadcrumbs
 }) {
     return (
@@ -25,4 +24,4 @@ export default function PageHeader({
             </div>
         </section>
     );
-}
+};

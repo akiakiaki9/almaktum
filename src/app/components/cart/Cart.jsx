@@ -19,10 +19,11 @@ export default function Cart({ isOpen, onClose }) {
   // Блокируем скролл при открытии корзины
   useEffect(() => {
     if (isOpen) {
+      const scrollY = window.scrollY;
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
-      document.body.style.top = `-${window.scrollY}px`;
+      document.body.style.top = `-${scrollY}px`;
     } else {
       const scrollY = document.body.style.top;
       document.body.style.overflow = '';
@@ -129,21 +130,34 @@ export default function Cart({ isOpen, onClose }) {
               <div className="cart-items">
                 {cart.map(item => (
                   <div key={item.id} className="cart-item">
-                    <div className="cart-item-info">
-                      <h4>{item.name}</h4>
-                      <p>{item.price.toLocaleString()} сум</p>
+                    {/* Фотография блюда */}
+                    <div className="cart-item-image">
+                      {item.image ? (
+                        <img src={item.image} alt={item.name} />
+                      ) : (
+                        <div className="cart-item-placeholder">
+                          🍽️
+                        </div>
+                      )}
                     </div>
-                    <div className="cart-item-actions">
-                      <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>
-                        <IoRemove />
-                      </button>
-                      <span>{item.quantity}</span>
-                      <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>
-                        <IoAdd />
-                      </button>
-                      <button onClick={() => removeFromCart(item.id)} className="remove-btn">
-                        <IoTrash />
-                      </button>
+                    
+                    <div className="cart-item-details">
+                      <div className="cart-item-info">
+                        <h4>{item.name}</h4>
+                        <p>{item.price.toLocaleString()} сум</p>
+                      </div>
+                      <div className="cart-item-actions">
+                        <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>
+                          <IoRemove />
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>
+                          <IoAdd />
+                        </button>
+                        <button onClick={() => removeFromCart(item.id)} className="remove-btn">
+                          <IoTrash />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -192,8 +206,11 @@ export default function Cart({ isOpen, onClose }) {
                   <p>Ваш заказ:</p>
                   {cart.slice(0, 3).map(item => (
                     <div key={item.id} className="order-summary-item">
-                      <span>{item.name} x{item.quantity}</span>
-                      <span>{(item.price * item.quantity).toLocaleString()} сум</span>
+                      <div className="order-summary-item-info">
+                        <span className="order-item-name">{item.name}</span>
+                        <span className="order-item-quantity">x{item.quantity}</span>
+                      </div>
+                      <span className="order-item-price">{(item.price * item.quantity).toLocaleString()} сум</span>
                     </div>
                   ))}
                   {cart.length > 3 && <p className="more-items">...и ещё {cart.length - 3} позиций</p>}

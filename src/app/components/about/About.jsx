@@ -8,12 +8,13 @@ import {
   FaInstagram,
   FaStar,
   FaUtensils,
-  FaWineGlassAlt,
-  FaChevronRight
+  FaChevronRight,
+  FaSmoking
 } from 'react-icons/fa';
 import { MdOutlineRoomService } from 'react-icons/md';
-import { GiKnifeFork } from 'react-icons/gi';
+import { GiKnifeFork, GiSmokingPipe } from 'react-icons/gi';
 import { TbArmchair } from 'react-icons/tb';
+import { IoWaterOutline } from 'react-icons/io5';
 import './about.css';
 
 export default function About() {
@@ -38,7 +39,7 @@ export default function About() {
 
   const features = [
     { icon: <GiKnifeFork />, text: 'Авторская кухня' },
-    { icon: <FaWineGlassAlt />, text: 'Винная карта' },
+    { icon: <GiSmokingPipe />, text: 'Кальянная карта' },
     { icon: <TbArmchair />, text: 'Восточный колорит' },
     { icon: <MdOutlineRoomService />, text: 'Премиум сервис' }
   ];
@@ -134,7 +135,7 @@ export default function About() {
             <div className="visual-wrapper">
               <div className="main-image">
                 <img
-                  src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80"
+                  src="/images/gallery/17.png"
                   alt="Интерьер ресторана Al Maktum"
                   className="main-image-img"
                 />
@@ -146,17 +147,12 @@ export default function About() {
               </div>
 
               <div className="floating-card card-1">
-                <FaWineGlassAlt />
-                <span>Винная карта</span>
-              </div>
-
-              <div className="floating-card card-2">
-                <FaUtensils />
-                <span>Шеф-повар</span>
+                <GiSmokingPipe />
+                <span>Кальянная карта</span>
               </div>
 
               <div className="experience-badge">
-                <div className="experience-number">5+</div>
+                <div className="experience-number">10+</div>
                 <div className="experience-text">лет<br />совершенства</div>
               </div>
             </div>

@@ -4,16 +4,14 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { menuData } from '@/app/utils/data';
 import { useCart } from '@/context/CartContext';
-import { 
-  FaUtensils, 
+import {
+  FaUtensils,
   FaChevronRight,
   FaStar,
   FaShoppingBag,
   FaStarHalfAlt,
   FaChevronLeft
 } from 'react-icons/fa';
-import { GiChopsticks, GiFullPizza } from 'react-icons/gi';
-import { MdLocalDrink } from 'react-icons/md';
 import './menu.css';
 
 export default function Menu() {
@@ -33,14 +31,14 @@ export default function Menu() {
   const handleCategoryClick = (categoryId, categoryData = null) => {
     setActiveCategory(categoryId);
     setSelectedCategoryData(categoryData);
-    
+
     setTimeout(() => {
       if (menuSectionRef.current) {
         const navbarHeight = 80;
         const categoryTabsHeight = 70;
         const elementPosition = menuSectionRef.current.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - navbarHeight - categoryTabsHeight;
-        
+
         window.scrollTo({
           top: offsetPosition,
           behavior: 'smooth'
@@ -191,7 +189,7 @@ export default function Menu() {
         {/* Category Tabs с возможностью скролла и drag */}
         <div className="category-tabs-wrapper">
           {showLeftArrow && (
-            <button 
+            <button
               className="scroll-arrow scroll-arrow-left"
               onClick={() => scrollTabs('left')}
               aria-label="Прокрутить влево"
@@ -199,9 +197,9 @@ export default function Menu() {
               <FaChevronLeft />
             </button>
           )}
-          
+
           <div className="category-tabs" ref={tabsContainerRef}>
-            <button 
+            <button
               className={`category-tab ${activeCategory === 'all' ? 'active' : ''}`}
               onClick={() => handleCategoryClick('all')}
             >
@@ -219,9 +217,9 @@ export default function Menu() {
               </button>
             ))}
           </div>
-          
+
           {showRightArrow && (
-            <button 
+            <button
               className="scroll-arrow scroll-arrow-right"
               onClick={() => scrollTabs('right')}
               aria-label="Прокрутить вправо"
@@ -240,12 +238,12 @@ export default function Menu() {
               <FaChevronRight />
             </Link>
           </div>
-          
+
           <div className="menu-grid">
             {displayItems.map((item, index) => (
-              <MenuCard 
-                key={item.id} 
-                item={item} 
+              <MenuCard
+                key={item.id}
+                item={item}
                 onAddToCart={addToCart}
                 index={index}
               />
@@ -271,7 +269,7 @@ function MenuCard({ item, onAddToCart, index }) {
   };
 
   return (
-    <div 
+    <div
       className={`menu-card ${isHovered ? 'hovered' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -279,7 +277,7 @@ function MenuCard({ item, onAddToCart, index }) {
     >
       <div className="card-glow"></div>
       <div className="card-gold-border"></div>
-      
+
       <div className="menu-card-image">
         <div className="image-wrapper">
           <div className="image-placeholder">
@@ -296,7 +294,7 @@ function MenuCard({ item, onAddToCart, index }) {
           </div>
         </div>
       </div>
-      
+
       <div className="menu-card-info">
         <div className="card-header">
           <h4>{item.name}</h4>
@@ -312,7 +310,7 @@ function MenuCard({ item, onAddToCart, index }) {
               <span className="old-price">{item.oldPrice.toLocaleString()} сум</span>
             )}
           </div>
-          <button 
+          <button
             className={`add-to-cart-btn ${isHovered ? 'visible' : ''} ${isAdding ? 'adding' : ''}`}
             onClick={handleAddToCart}
             disabled={isAdding}
@@ -333,4 +331,4 @@ function MenuCard({ item, onAddToCart, index }) {
       </div>
     </div>
   );
-}
+};

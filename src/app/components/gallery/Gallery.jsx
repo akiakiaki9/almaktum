@@ -17,60 +17,25 @@ import './gallery.css';
 const galleryImages = [
   {
     id: 1,
-    url: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80',
+    url: '/images/gallery/2.png',
     title: 'Основной зал',
     description: 'Элегантный интерьер с золотыми акцентами и панорамными окнами',
     category: 'Интерьер'
   },
   {
     id: 2,
-    url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80',
+    url: '/images/gallery/13.png',
     title: 'Ресторанная зона',
     description: 'Уютная атмосфера для романтических ужинов при свечах',
     category: 'Интерьер'
   },
   {
-    id: 3,
-    url: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&q=80',
-    title: 'Банкетный зал',
-    description: 'Просторный зал для торжественных мероприятий до 200 гостей',
-    category: 'Интерьер'
-  },
-  {
-    id: 4,
-    url: 'https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?w=1200&q=80',
-    title: 'Летняя терраса',
-    description: 'Летняя веранда с видом на город и свежим воздухом',
-    category: 'Терраса'
-  },
-  {
-    id: 5,
-    url: 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=1200&q=80',
-    title: 'Шеф-повар',
-    description: 'Мастер-классы от шеф-повара и приготовление традиционных блюд',
-    category: 'Кухня'
-  },
-  {
     id: 6,
-    url: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=1200&q=80',
+    url: '/images/gallery/11.png',
     title: 'Живая музыка',
     description: 'Вечерние выступления лучших музыкантов и джазовые вечера',
     category: 'Развлечения'
   },
-  {
-    id: 7,
-    url: 'https://images.unsplash.com/photo-1515669097368-22e68427d265?w=1200&q=80',
-    title: 'Винная карта',
-    description: 'Более 200 наименований вин со всего мира',
-    category: 'Кухня'
-  },
-  {
-    id: 8,
-    url: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1200&q=80',
-    title: 'VIP Зона',
-    description: 'Премиум зона с отдельным входом и обслуживанием',
-    category: 'Интерьер'
-  }
 ];
 
 export default function Gallery() {

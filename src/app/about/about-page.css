@@ -1,4 +1,4 @@
-/* about-page.css - обновленная версия */
+/* about-page.css - уменьшенная версия для мобильных устройств */
 
 .about-page {
     background: linear-gradient(135deg, #0d0b0b, var(--dark));
@@ -579,7 +579,10 @@
     border-color: transparent;
 }
 
-/* Responsive */
+/* ============================================ */
+/* МОБИЛЬНАЯ ВЕРСИЯ - УМЕНЬШЕННЫЕ РАЗМЕРЫ */
+/* ============================================ */
+
 @media (max-width: 1024px) {
     .container {
         padding: 0 30px;
@@ -599,46 +602,212 @@
         padding: 0 20px;
     }
     
+    .section-header {
+        margin-bottom: 40px;
+    }
+    
     .section-header h2 {
         font-size: 28px;
+        margin-bottom: 12px;
     }
     
     .section-header p {
         font-size: 14px;
     }
     
+    .section-tag {
+        font-size: 11px;
+        padding: 4px 12px;
+        margin-bottom: 12px;
+    }
+    
+    .about-video-section {
+        padding: 40px 0 50px;
+    }
+    
+    .dance-evening-section,
+    .concert-section,
+    .events-gallery,
+    .video-gallery-section,
+    .about-features {
+        padding: 50px 0;
+    }
+    
+    .dance-content {
+        gap: 30px;
+    }
+    
+    .dance-features {
+        gap: 16px;
+    }
+    
+    .dance-feature {
+        padding: 14px;
+        gap: 12px;
+    }
+    
+    .dance-feature .feature-icon {
+        font-size: 24px;
+    }
+    
+    .dance-feature h4 {
+        font-size: 15px;
+    }
+    
+    .dance-feature p {
+        font-size: 12px;
+    }
+    
+    .dance-description p {
+        font-size: 13px;
+        line-height: 1.5;
+        margin-bottom: 16px;
+    }
+    
+    .dance-btn {
+        padding: 10px 24px;
+        font-size: 14px;
+    }
+    
     .dance-gallery {
-        grid-template-columns: 1fr;
+        gap: 12px;
     }
     
     .concert-grid {
-        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .concert-card {
+        border-radius: 16px;
+    }
+    
+    .concert-image {
+        height: 200px;
+    }
+    
+    .concert-info {
+        padding: 16px;
+    }
+    
+    .concert-info h4 {
+        font-size: 18px;
+    }
+    
+    .concert-info > p {
+        font-size: 12px;
+    }
+    
+    .concert-schedule span {
+        font-size: 10px;
+        padding: 4px 10px;
+    }
+    
+    .about-philosophy {
+        padding: 60px 0;
+        background-attachment: scroll;
+    }
+    
+    .philosophy-quote h3 {
+        font-size: 22px;
+        margin: 15px 0;
+    }
+    
+    .philosophy-quote p {
+        font-size: 14px;
+    }
+    
+    .quote-icon {
+        font-size: 50px;
     }
     
     .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .gallery-overlay {
+        padding: 12px;
+    }
+    
+    .gallery-overlay h4 {
+        font-size: 12px;
+    }
+    
+    .gallery-category {
+        font-size: 9px;
     }
     
     .video-gallery-grid {
-        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .video-thumbnail {
+        height: 180px;
+    }
+    
+    .video-play-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .video-gallery-card h4 {
+        font-size: 15px;
+        padding: 12px 12px 6px;
+    }
+    
+    .video-gallery-card p {
+        font-size: 11px;
+        padding: 0 12px 12px;
+    }
+    
+    .features-grid {
+        gap: 20px;
+    }
+    
+    .feature-item {
+        padding: 25px 20px;
+    }
+    
+    .feature-icon {
+        font-size: 36px;
+        margin-bottom: 12px;
+    }
+    
+    .feature-item h4 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    
+    .feature-item p {
+        font-size: 12px;
+    }
+    
+    .social-section {
+        padding: 40px 0 50px;
+    }
+    
+    .social-content h3 {
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+    
+    .social-content p {
+        font-size: 13px;
+        margin-bottom: 20px;
     }
     
     .social-links {
         flex-direction: column;
         align-items: center;
+        gap: 12px;
     }
     
     .social-link {
         width: 200px;
         justify-content: center;
-    }
-    
-    .philosophy-quote h3 {
-        font-size: 24px;
-    }
-    
-    .philosophy-quote p {
-        font-size: 16px;
+        padding: 10px 20px;
+        font-size: 14px;
     }
 }
 
@@ -648,23 +817,91 @@
     }
     
     .section-header h2 {
-        font-size: 24px;
+        font-size: 22px;
     }
     
     .section-tag {
-        font-size: 11px;
+        font-size: 10px;
+    }
+    
+    .title-decoration span:nth-child(1) { width: 30px; }
+    .title-decoration span:nth-child(2) { width: 15px; }
+    .title-decoration span:nth-child(3) { width: 45px; }
+    
+    .about-video-section {
+        padding: 30px 0 40px;
+    }
+    
+    .dance-evening-section,
+    .concert-section,
+    .events-gallery,
+    .video-gallery-section,
+    .about-features {
+        padding: 40px 0;
     }
     
     .dance-feature {
         flex-direction: column;
         text-align: center;
+        padding: 12px;
     }
     
-    .concert-info h4 {
+    .dance-feature h4 {
+        font-size: 14px;
+    }
+    
+    .dance-feature p {
+        font-size: 11px;
+    }
+    
+    .dance-btn {
+        padding: 8px 20px;
+        font-size: 13px;
+    }
+    
+    .gallery-grid {
+        gap: 10px;
+    }
+    
+    .gallery-overlay h4 {
+        font-size: 10px;
+    }
+    
+    .philosophy-quote h3 {
         font-size: 18px;
     }
     
-    .features-grid {
-        grid-template-columns: 1fr;
+    .philosophy-quote p {
+        font-size: 12px;
+    }
+    
+    .quote-icon {
+        font-size: 40px;
+    }
+    
+    .feature-item {
+        padding: 20px 16px;
+    }
+    
+    .feature-icon {
+        font-size: 30px;
+    }
+    
+    .feature-item h4 {
+        font-size: 14px;
+    }
+    
+    .feature-item p {
+        font-size: 11px;
+    }
+    
+    .social-content h3 {
+        font-size: 18px;
+    }
+    
+    .social-link {
+        width: 180px;
+        padding: 8px 16px;
+        font-size: 13px;
     }
 }
