@@ -2,7 +2,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./styles/globals.css";
 import { CartProvider } from '@/context/CartContext';
 import Script from "next/script";
-import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,6 +21,11 @@ export const metadata = {
     template: "%s | Al Maktum Premium Restaurant"
   },
   description: "Al Maktum - премиум ресторан в центре Бухары. Изысканная восточная и европейская кухня, банкетные залы, летняя веранда. Бронирование столиков онлайн. Лучший ресторан Бухары.",
+  icons: {
+    icon: "/images/logo1.png",
+    apple: "/images/logo1.png",
+    shortcut: "/images/logo1.png",
+  },
   keywords: [
     "ресторан Бухара",
     "премиум ресторан",
@@ -95,17 +99,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ru" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <Head>
+      <head>
         {/* Базовые метатеги */}
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
         <meta name="theme-color" content="#0a0808" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-        {/* Favicon из логотипа */}
-        <link rel="icon" type="image/png" href="/images/logo1.png" />
-        <link rel="apple-touch-icon" href="/images/logo1.png" />
 
         {/* Структурированные данные Schema.org */}
         <script
@@ -219,7 +219,7 @@ export default function RootLayout({ children }) {
         {/* Canonical URL */}
         <link rel="canonical" href="https://almaktum.uz" />
         <link rel="alternate" href="https://almaktum.uz" hrefLang="x-default" />
-      </Head>
+      </head>
       <body>
         <CartProvider>
           {children}
@@ -244,7 +244,7 @@ export default function RootLayout({ children }) {
         />
 
         {/* Яндекс.Метрика */}
-        <Script
+        {/* <Script
           id="yandex-metrika"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -262,7 +262,7 @@ export default function RootLayout({ children }) {
               });
             `,
           }}
-        />
+        /> */}
 
         {/* JSON-LD для хлебных крошек */}
         <Script
@@ -304,4 +304,4 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   );
-};
+}

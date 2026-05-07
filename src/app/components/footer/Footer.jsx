@@ -144,10 +144,10 @@ export default function Footer() {
             </h4>
             <div className="contact-info-footer">
               <a href="tel:+998907449870" className="contact-item">
-                📞 +998 907 449 870
+                📞 +998 90 744 98 70
               </a>
               <a href="tel:+998914417181" className="contact-item">
-                📞 +998 914 417 181
+                📞 +998 91 441 71 81
               </a>
               <div className="contact-item">
                 📍 г. Бухара, Шарк 1

@@ -113,252 +113,194 @@
     filter: grayscale(0) brightness(1);
 }
 
-/* Contact Form */
-.contact-form-wrapper {
+/* Contact Call Card - новая карточка с телефоном */
+.contact-call-card {
     background: linear-gradient(135deg, #0f0d0d, #0a0808);
     border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: 20px;
+    border-radius: 24px;
     padding: 32px;
+    height: fit-content;
 }
 
-.form-header {
+.call-card-header {
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
 }
 
-.form-header h3 {
+.call-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.call-card-header h3 {
     font-size: 24px;
     color: var(--gold);
     margin-bottom: 8px;
 }
 
-.form-header p {
+.call-card-header p {
     color: var(--text-muted);
-    font-size: 13px;
+    font-size: 14px;
 }
 
-.contact-form {
+/* Телефонная карточка */
+.phone-card {
+    background: linear-gradient(135deg, rgba(183, 154, 31, 0.15), rgba(183, 154, 31, 0.05));
+    border: 1px solid rgba(183, 154, 31, 0.3);
+    border-radius: 20px;
+    padding: 20px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 16px;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-
-.input-group {
-    position: relative;
-}
-
-.input-group input,
-.input-group textarea {
-    width: 100%;
-    padding: 12px 14px 12px 42px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: 10px;
-    color: var(--text-light);
-    font-size: 14px;
+    margin-bottom: 24px;
     transition: all 0.3s ease;
-    font-family: inherit;
 }
 
-.input-group textarea {
-    padding-top: 12px;
-    resize: vertical;
-}
-
-.input-group input:focus,
-.input-group textarea:focus {
-    outline: none;
+.phone-card:hover {
     border-color: var(--gold);
-    background: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(135deg, rgba(183, 154, 31, 0.2), rgba(183, 154, 31, 0.08));
 }
 
-.input-group input::placeholder,
-.input-group textarea::placeholder {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 13px;
-}
-
-.input-icon {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 16px;
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-.input-group textarea~.input-icon {
-    top: 18px;
-    transform: none;
-}
-
-.submit-btn {
-    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-    border: none;
-    padding: 12px 24px;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--dark);
-    border-radius: 40px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.phone-icon {
+    width: 52px;
+    height: 52px;
+    background: rgba(183, 154, 31, 0.2);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    margin-top: 8px;
 }
 
-.submit-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+.phone-icon svg {
+    font-size: 24px;
+    color: var(--gold);
 }
 
-.submit-btn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
+.phone-details {
+    flex: 1;
 }
 
-/* Notifications */
-.notification {
-    position: fixed;
-    top: 100px;
-    right: 30px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 18px;
-    border-radius: 12px;
-    background: var(--dark-card);
-    border-left: 4px solid;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    animation: slideInRight 0.3s ease;
-    z-index: 1000;
-    max-width: 320px;
-}
-
-.notification.success {
-    border-left-color: #4caf50;
-}
-
-.notification.success svg {
-    color: #4caf50;
-    font-size: 22px;
-}
-
-.notification.error {
-    border-left-color: #f44336;
-}
-
-.notification.error svg {
-    color: #f44336;
-    font-size: 22px;
-}
-
-.notification div strong {
+.phone-label {
+    font-size: 12px;
+    color: var(--text-muted);
     display: block;
     margin-bottom: 4px;
-    font-size: 14px;
 }
 
-.notification div p {
-    font-size: 12px;
-    color: var(--text-muted);
-}
-
-.notification button {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    font-size: 18px;
-    cursor: pointer;
-    margin-left: auto;
-    padding: 0 4px;
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(100%);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Quick Contact */
-.quick-contact {
-    display: flex;
-    gap: 16px;
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(212, 175, 55, 0.1);
-}
-
-.quick-item {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    background: rgba(212, 175, 55, 0.05);
-    border-radius: 10px;
-}
-
-.quick-item>span {
-    font-size: 24px;
-}
-
-.quick-item h4 {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-bottom: 4px;
-}
-
-.quick-item a {
+.phone-number {
+    font-size: 20px;
+    font-weight: 700;
     color: var(--gold);
     text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
-    transition: color 0.3s;
+    display: block;
+    line-height: 1.3;
+    margin-bottom: 4px;
+    transition: all 0.3s;
 }
 
-.quick-item a:hover {
+.phone-number:hover {
     color: var(--gold-light);
 }
 
-.messengers {
+.phone-schedule {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.copy-btn {
+    background: rgba(183, 154, 31, 0.15);
+    border: 1px solid rgba(183, 154, 31, 0.3);
+    border-radius: 40px;
+    padding: 8px 16px;
+    color: var(--gold);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 6px;
 }
 
-.spinner {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border: 2px solid var(--dark);
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: spin 0.6s linear infinite;
+.copy-btn:hover {
+    background: var(--gold);
+    color: var(--dark);
+    transform: translateY(-2px);
 }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+.call-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-bottom: 24px;
+}
+
+.call-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    gap: 14px;
+}
+
+.call-btn svg {
+    font-size: 22px;
+}
+
+/* Call Info Items */
+.call-info {
+    margin-bottom: 24px;
+}
+
+.call-info-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.call-info-item:last-child {
+    border-bottom: none;
+}
+
+.call-info-item span {
+    font-size: 28px;
+}
+
+.call-info-item strong {
+    font-size: 14px;
+    color: var(--text-light);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.call-info-item p {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.call-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 8px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
 }
 
 /* ============================================ */
-/* МОБИЛЬНАЯ ВЕРСИЯ - УМЕНЬШЕННЫЕ РАЗМЕРЫ */
+/* МОБИЛЬНАЯ ВЕРСИЯ */
 /* ============================================ */
 
 @media (max-width: 1024px) {
@@ -392,11 +334,6 @@
         padding: 0 20px;
     }
 
-    .contact-grid {
-        gap: 30px;
-    }
-
-    /* Уменьшаем карточки информации */
     .info-cards {
         grid-template-columns: 1fr;
         gap: 12px;
@@ -419,15 +356,8 @@
 
     .info-content p {
         font-size: 12px;
-        margin-bottom: 3px;
     }
 
-    .info-link {
-        font-size: 12px;
-        margin-top: 8px;
-    }
-
-    /* Уменьшаем карту */
     .map-container {
         border-radius: 12px;
     }
@@ -436,119 +366,77 @@
         height: 200px;
     }
 
-    /* Уменьшаем форму */
-    .contact-form-wrapper {
-        padding: 24px 18px;
-        border-radius: 16px;
+    /* Call Card на мобилке */
+    .contact-call-card {
+        padding: 24px 20px;
+        border-radius: 20px;
     }
 
-    .form-header {
+    .call-card-header {
         margin-bottom: 20px;
     }
 
-    .form-header h3 {
+    .call-icon {
+        font-size: 40px;
+    }
+
+    .call-card-header h3 {
         font-size: 20px;
     }
 
-    .form-header p {
-        font-size: 12px;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .contact-form {
-        gap: 12px;
-    }
-
-    .input-group input,
-    .input-group textarea {
-        padding: 10px 12px 10px 38px;
+    .call-card-header p {
         font-size: 13px;
-        border-radius: 8px;
     }
 
-    .input-group input::placeholder,
-    .input-group textarea::placeholder {
-        font-size: 12px;
+    .phone-card {
+        padding: 15px;
+        gap: 12px;
     }
 
-    .input-icon {
-        left: 12px;
+    .phone-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .phone-icon svg {
+        font-size: 20px;
+    }
+
+    .phone-number {
+        font-size: 17px;
+    }
+
+    .copy-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+
+    .call-btn {
+        padding: 14px;
         font-size: 14px;
     }
 
-    .input-group textarea~.input-icon {
-        top: 14px;
+    .call-btn svg {
+        font-size: 18px;
     }
 
-    .submit-btn {
-        padding: 10px 20px;
-        font-size: 13px;
-        gap: 6px;
-        border-radius: 30px;
+    .call-info-item {
+        padding: 10px 0;
     }
 
-    /* Уменьшаем быстрые контакты */
-    .quick-contact {
-        flex-direction: column;
-        gap: 12px;
-        margin-top: 20px;
-        padding-top: 16px;
+    .call-info-item span {
+        font-size: 24px;
     }
 
-    .quick-item {
-        padding: 8px 12px;
-        gap: 8px;
-    }
-
-    .quick-item>span {
-        font-size: 20px;
-    }
-
-    .quick-item h4 {
-        font-size: 11px;
-    }
-
-    .quick-item a {
-        font-size: 12px;
-    }
-
-    .messengers {
-        gap: 8px;
-    }
-
-    /* Уведомления на мобилке */
-    .notification {
-        top: 70px;
-        right: 16px;
-        left: 16px;
-        max-width: none;
-        padding: 12px 16px;
-        gap: 10px;
-    }
-
-    .notification.success svg,
-    .notification.error svg {
-        font-size: 20px;
-    }
-
-    .notification div strong {
+    .call-info-item strong {
         font-size: 13px;
     }
 
-    .notification div p {
+    .call-info-item p {
         font-size: 11px;
-    }
-
-    .notification button {
-        font-size: 16px;
     }
 }
 
-/* Для очень маленьких экранов */
 @media (max-width: 480px) {
     .contact {
         padding: 40px 0;
@@ -566,26 +454,33 @@
         padding: 12px;
     }
 
-    .contact-form-wrapper {
-        padding: 20px 16px;
+    .contact-call-card {
+        padding: 18px 16px;
     }
 
-    .form-header h3 {
-        font-size: 18px;
+    .phone-card {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
     }
 
-    .input-group input,
-    .input-group textarea {
-        padding: 9px 10px 9px 36px;
-        font-size: 12px;
+    .phone-details {
+        text-align: center;
     }
 
-    .quick-item {
-        padding: 6px 10px;
+    .copy-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .call-info-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
     }
 }
 
-/* Для горизонтальной ориентации на мобилках */
 @media (max-width: 768px) and (orientation: landscape) {
     .contact {
         padding: 35px 0;

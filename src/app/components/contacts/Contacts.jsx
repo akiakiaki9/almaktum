@@ -6,62 +6,24 @@ import {
     IoCall,
     IoTime,
     IoLogoInstagram,
-    IoSend,
-    IoCheckmarkCircle,
-    IoCloseCircle
+    IoCheckmarkCircle
 } from 'react-icons/io5';
 import './contact.css';
 
 export default function Contact() {
-    const [formData, setFormData] = useState({
-        name: '',
-        phone: '',
-        email: '',
-        subject: '',
-        message: ''
-    });
-    const [status, setStatus] = useState(null);
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [copied, setCopied] = useState(false);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setStatus(null);
+    const phoneNumber = "+998907449870";
+    const formattedPhone = "+998 90 744 98 70";
 
+    const copyPhone = async () => {
         try {
-            const res = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
-
-            if (res.ok) {
-                setStatus('success');
-                setFormData({
-                    name: '',
-                    phone: '',
-                    email: '',
-                    subject: '',
-                    message: ''
-                });
-                setTimeout(() => setStatus(null), 5000);
-            } else {
-                setStatus('error');
-                setTimeout(() => setStatus(null), 5000);
-            }
-        } catch (error) {
-            setStatus('error');
-            setTimeout(() => setStatus(null), 5000);
-        } finally {
-            setIsSubmitting(false);
+            await navigator.clipboard.writeText(phoneNumber);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error('Не удалось скопировать:', err);
         }
-    };
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
     };
 
     const contactInfo = [
@@ -75,7 +37,7 @@ export default function Contact() {
         {
             icon: <IoCall />,
             title: 'Телефоны',
-            details: ['+998 907 449 870', '+998 914 417 181'],
+            details: ['+998 90 744 98 70', '+998 91 441 71 81'],
             action: 'Позвонить',
             link: 'tel:+998907449870'
         },
@@ -101,7 +63,7 @@ export default function Contact() {
                 <div className="contact-header">
                     <span className="section-tag gold-text">Свяжитесь с нами</span>
                     <h2>Мы всегда <span className="gold-text">на связи</span></h2>
-                    <p>Оставьте заявку или свяжитесь с нами любым удобным способом</p>
+                    <p>Свяжитесь с нами любым удобным способом</p>
                 </div>
 
                 <div className="contact-grid">
@@ -146,144 +108,68 @@ export default function Contact() {
                         </div>
                     </div>
 
-                    {/* Contact Form */}
-                    <div className="contact-form-wrapper">
-                        <div className="form-header">
-                            <h3>📝 Обратная связь</h3>
-                            <p>Заполните форму и мы ответим вам в ближайшее время</p>
+                    {/* Контактная карточка с телефоном */}
+                    <div className="contact-call-card">
+                        <div className="call-card-header">
+                            <div className="call-icon">📞</div>
+                            <h3>Забронировать столик</h3>
+                            <p>Позвоните нам для бронирования</p>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="contact-form">
-                            <div className="form-row">
-                                <div className="input-group">
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        placeholder="Ваше имя *"
-                                        required
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        disabled={isSubmitting}
-                                    />
-                                    <span className="input-icon">👤</span>
-                                </div>
-
-                                <div className="input-group">
-                                    <input
-                                        type="tel"
-                                        name="phone"
-                                        placeholder="Номер телефона *"
-                                        required
-                                        value={formData.phone}
-                                        onChange={handleChange}
-                                        disabled={isSubmitting}
-                                    />
-                                    <span className="input-icon">📞</span>
-                                </div>
+                        {/* Телефонная карточка */}
+                        <div className="phone-card">
+                            <div className="phone-icon">
+                                <IoCall />
                             </div>
-
-                            <div className="form-row">
-                                <div className="input-group">
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        placeholder="Email (необязательно)"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        disabled={isSubmitting}
-                                    />
-                                    <span className="input-icon">📧</span>
-                                </div>
-
-                                <div className="input-group">
-                                    <input
-                                        type="text"
-                                        name="subject"
-                                        placeholder="Тема обращения *"
-                                        required
-                                        value={formData.subject}
-                                        onChange={handleChange}
-                                        disabled={isSubmitting}
-                                    />
-                                    <span className="input-icon">📝</span>
-                                </div>
+                            <div className="phone-details">
+                                <span className="phone-label">Позвоните нам</span>
+                                <a href={`tel:${phoneNumber}`} className="phone-number">
+                                    {formattedPhone}
+                                </a>
+                                <span className="phone-schedule">Ежедневно с 10:00 до 23:00</span>
                             </div>
-
-                            <div className="input-group full-width">
-                                <textarea
-                                    name="message"
-                                    placeholder="Ваше сообщение *"
-                                    rows="5"
-                                    required
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    disabled={isSubmitting}
-                                />
-                                <span className="input-icon">💬</span>
-                            </div>
-
-                            <button
-                                type="submit"
-                                className="submit-btn"
-                                disabled={isSubmitting}
-                            >
-                                {isSubmitting ? (
-                                    <>
-                                        <span className="spinner"></span>
-                                        Отправка...
-                                    </>
-                                ) : (
-                                    <>
-                                        <IoSend /> Отправить сообщение
-                                    </>
-                                )}
+                            <button className="copy-btn" onClick={copyPhone}>
+                                {copied ? <IoCheckmarkCircle /> : 'Копировать'}
                             </button>
+                        </div>
 
-                            {status === 'success' && (
-                                <div className="notification success">
-                                    <IoCheckmarkCircle />
-                                    <div>
-                                        <strong>Сообщение отправлено!</strong>
-                                        <p>Мы свяжемся с вами в ближайшее время.</p>
-                                    </div>
-                                    <button onClick={() => setStatus(null)}>×</button>
-                                </div>
-                            )}
+                        {/* Кнопка звонка */}
+                        <a href={`tel:${phoneNumber}`} className="call-btn">
+                            <IoCall />
+                            <span>Позвонить сейчас</span>
+                        </a>
 
-                            {status === 'error' && (
-                                <div className="notification error">
-                                    <IoCloseCircle />
-                                    <div>
-                                        <strong>Ошибка отправки!</strong>
-                                        <p>Пожалуйста, попробуйте позже или позвоните нам.</p>
-                                    </div>
-                                    <button onClick={() => setStatus(null)}>×</button>
-                                </div>
-                            )}
-                        </form>
-
-                        {/* Quick Contact */}
-                        <div className="quick-contact">
-                            <div className="quick-item">
-                                <span>📞</span>
+                        {/* Дополнительная информация */}
+                        <div className="call-info">
+                            <div className="call-info-item">
+                                <span>⏰</span>
                                 <div>
-                                    <h4>Быстрый звонок</h4>
-                                    <a href="tel:+998907449870">+998 907 449 870</a>
+                                    <strong>Быстрое бронирование</strong>
+                                    <p>Звоните, и мы подберем лучший столик</p>
                                 </div>
                             </div>
-                            <div className="quick-item">
-                                <span>💬</span>
+                            <div className="call-info-item">
+                                <span>🎉</span>
                                 <div>
-                                    <h4>Мессенджеры</h4>
-                                    <div className="messengers">
-                                        <a href="https://www.instagram.com/al_maktum_bukhara/" target="_blank">Instagram</a>
-                                    </div>
+                                    <strong>Особые события</strong>
+                                    <p>Поможем организовать праздник</p>
+                                </div>
+                            </div>
+                            <div className="call-info-item">
+                                <span>🍽️</span>
+                                <div>
+                                    <strong>Вопросы по меню</strong>
+                                    <p>Расскажем о блюдах и акциях</p>
                                 </div>
                             </div>
                         </div>
+
+                        <p className="call-note">
+                            📞 Позвоните нам, и мы с радостью ответим на все ваши вопросы
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
     );
-};
+}

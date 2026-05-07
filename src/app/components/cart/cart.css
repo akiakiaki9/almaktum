@@ -927,3 +927,307 @@
         align-self: flex-end;
     }
 }
+
+/* Добавьте эти стили к вашему cart.css */
+
+/* Кнопка очистки корзины */
+.btn-clear-cart {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(244, 67, 54, 0.5);
+    border-radius: 40px;
+    color: #f44336;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.btn-clear-cart:hover {
+    background: #f44336;
+    color: white;
+    border-color: #f44336;
+}
+
+/* Телефонная карточка в модалке */
+.phone-card {
+    background: linear-gradient(135deg, rgba(183, 154, 31, 0.15), rgba(183, 154, 31, 0.05));
+    border: 1px solid rgba(183, 154, 31, 0.3);
+    border-radius: 20px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+}
+
+.phone-card:hover {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(183, 154, 31, 0.2), rgba(183, 154, 31, 0.08));
+}
+
+.phone-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(183, 154, 31, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.phone-icon svg {
+    font-size: 22px;
+    color: var(--gold);
+}
+
+.phone-details {
+    flex: 1;
+}
+
+.phone-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.phone-number {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    text-decoration: none;
+    display: block;
+    line-height: 1.3;
+    margin-bottom: 2px;
+    transition: all 0.3s;
+}
+
+.phone-number:hover {
+    color: var(--gold-light);
+}
+
+.phone-schedule {
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+.copy-btn {
+    background: rgba(183, 154, 31, 0.15);
+    border: 1px solid rgba(183, 154, 31, 0.3);
+    border-radius: 40px;
+    padding: 6px 14px;
+    color: var(--gold);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.copy-btn:hover {
+    background: var(--gold);
+    color: var(--dark);
+}
+
+/* Кнопка звонка */
+.call-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.call-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    gap: 14px;
+}
+
+.call-btn svg {
+    font-size: 20px;
+}
+
+/* Modal Header */
+.modal-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.modal-header .header-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.modal-header h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: var(--gold);
+}
+
+.modal-header p {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* Order Summary */
+.order-summary {
+    background: rgba(183, 154, 31, 0.08);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 24px;
+}
+
+.order-summary-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 12px;
+}
+
+.order-summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(183, 154, 31, 0.15);
+}
+
+.order-summary-item:last-child {
+    border-bottom: none;
+}
+
+.order-summary-item-info {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+
+.order-item-name {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.order-item-quantity {
+    font-size: 11px;
+    color: var(--gold);
+}
+
+.booking-note {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 12px;
+    margin-bottom: 16px;
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(183, 154, 31, 0.3);
+    color: var(--gold);
+    padding: 12px;
+    font-size: 14px;
+}
+
+.secondary-btn:hover {
+    background: rgba(183, 154, 31, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Адаптивность для мобилок */
+@media (max-width: 768px) {
+    .phone-card {
+        padding: 12px;
+        gap: 10px;
+    }
+    
+    .phone-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .phone-icon svg {
+        font-size: 18px;
+    }
+    
+    .phone-number {
+        font-size: 16px;
+    }
+    
+    .copy-btn {
+        padding: 5px 12px;
+        font-size: 11px;
+    }
+    
+    .call-btn {
+        padding: 14px;
+        font-size: 14px;
+    }
+    
+    .call-btn svg {
+        font-size: 18px;
+    }
+    
+    .modal-header .header-icon {
+        font-size: 40px;
+    }
+    
+    .modal-header h2 {
+        font-size: 20px;
+    }
+    
+    .modal-header p {
+        font-size: 12px;
+    }
+    
+    .order-summary {
+        padding: 12px;
+    }
+    
+    .order-item-name {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .phone-card {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .phone-details {
+        text-align: center;
+    }
+    
+    .copy-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .order-summary-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    
+    .order-summary-item-info {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

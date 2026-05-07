@@ -2,19 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import { useCart } from '@/context/CartContext';
-import { IoClose, IoAdd, IoRemove, IoTrash } from 'react-icons/io5';
+import { IoClose, IoAdd, IoRemove, IoTrash, IoCallOutline } from 'react-icons/io5';
 import './cart.css';
 
 export default function Cart({ isOpen, onClose }) {
-  const { cart, removeFromCart, updateQuantity, getTotalPrice, clearCart } = useCart();
+  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
-  const [orderStatus, setOrderStatus] = useState(null);
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    address: '',
-    comment: ''
-  });
+  const [copied, setCopied] = useState(false);
+  
+  const phoneNumber = "+998907449870";
+  const formattedPhone = "+998 90 744 98 70";
 
   // Блокируем скролл при открытии корзины
   useEffect(() => {
@@ -41,7 +38,7 @@ export default function Cart({ isOpen, onClose }) {
     };
   }, [isOpen]);
 
-  // Блокируем скролл при открытии модалки оформления заказа
+  // Блокируем скролл при открытии модалки
   useEffect(() => {
     if (isOrderModalOpen) {
       document.body.style.overflow = 'hidden';
@@ -67,43 +64,22 @@ export default function Cart({ isOpen, onClose }) {
   };
 
   const handleCloseOrderModal = () => {
-    if (!orderStatus || orderStatus !== 'loading') {
-      setIsOrderModalOpen(false);
+    setIsOrderModalOpen(false);
+  };
+
+  const copyPhone = async () => {
+    try {
+      await navigator.clipboard.writeText(phoneNumber);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Не удалось скопировать:', err);
     }
   };
 
-  const handleSubmitOrder = async () => {
-    if (!formData.name || !formData.phone) {
-      alert('Пожалуйста, заполните имя и телефон');
-      return;
-    }
-
-    setOrderStatus('loading');
-    
-    const orderData = {
-      order: cart,
-      total: getTotalPrice(),
-      customer: formData
-    };
-
-    const res = await fetch('/api/order', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(orderData)
-    });
-
-    if (res.ok) {
-      setOrderStatus('success');
+  const handleClearCart = () => {
+    if (window.confirm('Очистить всю корзину?')) {
       clearCart();
-      setTimeout(() => {
-        setOrderStatus(null);
-        setIsOrderModalOpen(false);
-        onClose();
-        setFormData({ name: '', phone: '', address: '', comment: '' });
-      }, 2000);
-    } else {
-      setOrderStatus('error');
-      setTimeout(() => setOrderStatus(null), 3000);
     }
   };
 
@@ -144,7 +120,6 @@ export default function Cart({ isOpen, onClose }) {
                     <div className="cart-item-details">
                       <div className="cart-item-info">
                         <h4>{item.name}</h4>
-                        <p>{item.price.toLocaleString()} сум</p>
                       </div>
                       <div className="cart-item-actions">
                         <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>
@@ -164,15 +139,17 @@ export default function Cart({ isOpen, onClose }) {
               </div>
 
               <div className="cart-footer">
-                <div className="cart-total">
-                  <span>Итого:</span>
-                  <span className="gold-text">{getTotalPrice().toLocaleString()} сум</span>
-                </div>
                 <button 
                   className="btn-gold order-btn" 
                   onClick={handleOpenOrderModal}
                 >
                   Оформить заказ
+                </button>
+                <button 
+                  className="btn-clear-cart" 
+                  onClick={handleClearCart}
+                >
+                  Очистить корзину
                 </button>
               </div>
             </>
@@ -180,93 +157,61 @@ export default function Cart({ isOpen, onClose }) {
         </div>
       </div>
 
-      {/* Модалка оформления заказа */}
+      {/* Модалка оформления заказа - с кнопкой звонка */}
       {isOrderModalOpen && (
         <div className="modal-overlay" onClick={handleCloseOrderModal}>
           <div className="modal-content order-modal" onClick={e => e.stopPropagation()}>
             <button className="modal-close" onClick={handleCloseOrderModal}>×</button>
-            <h2>📝 Оформление заказа</h2>
             
-            {orderStatus === 'success' ? (
-              <div className="order-success">
-                <div className="success-icon">✓</div>
-                <h3>Заказ успешно оформлен!</h3>
-                <p>Наш менеджер свяжется с вами в ближайшее время</p>
-              </div>
-            ) : orderStatus === 'error' ? (
-              <div className="order-error">
-                <div className="error-icon">✗</div>
-                <h3>Ошибка при оформлении</h3>
-                <p>Пожалуйста, попробуйте позже</p>
-                <button className="btn-gold" onClick={() => setOrderStatus(null)}>Попробовать снова</button>
-              </div>
-            ) : (
-              <>
-                <div className="order-summary">
-                  <p>Ваш заказ:</p>
-                  {cart.slice(0, 3).map(item => (
-                    <div key={item.id} className="order-summary-item">
-                      <div className="order-summary-item-info">
-                        <span className="order-item-name">{item.name}</span>
-                        <span className="order-item-quantity">x{item.quantity}</span>
-                      </div>
-                      <span className="order-item-price">{(item.price * item.quantity).toLocaleString()} сум</span>
-                    </div>
-                  ))}
-                  {cart.length > 3 && <p className="more-items">...и ещё {cart.length - 3} позиций</p>}
-                  <div className="order-total">
-                    <strong>Общая сумма:</strong>
-                    <strong className="gold-text">{getTotalPrice().toLocaleString()} сум</strong>
+            <div className="modal-header">
+              <div className="header-icon">📞</div>
+              <h2>Оформление заказа</h2>
+              <p>Позвоните нам, чтобы подтвердить заказ</p>
+            </div>
+
+            {/* Список блюд */}
+            <div className="order-summary">
+              <p className="order-summary-title">Ваш заказ:</p>
+              {cart.map(item => (
+                <div key={item.id} className="order-summary-item">
+                  <div className="order-summary-item-info">
+                    <span className="order-item-name">{item.name}</span>
+                    <span className="order-item-quantity">x{item.quantity}</span>
                   </div>
                 </div>
+              ))}
+            </div>
 
-                <form onSubmit={(e) => { e.preventDefault(); handleSubmitOrder(); }}>
-                  <input 
-                    type="text" 
-                    placeholder="Ваше имя *" 
-                    required
-                    value={formData.name} 
-                    onChange={e => setFormData({...formData, name: e.target.value})}
-                    disabled={orderStatus === 'loading'}
-                  />
-                  <input 
-                    type="tel" 
-                    placeholder="Номер телефона *" 
-                    required
-                    value={formData.phone} 
-                    onChange={e => setFormData({...formData, phone: e.target.value})}
-                    disabled={orderStatus === 'loading'}
-                  />
-                  <input 
-                    type="text" 
-                    placeholder="Адрес доставки (необязательно)" 
-                    value={formData.address} 
-                    onChange={e => setFormData({...formData, address: e.target.value})}
-                    disabled={orderStatus === 'loading'}
-                  />
-                  <textarea 
-                    placeholder="Комментарий к заказу (необязательно)" 
-                    rows="3"
-                    value={formData.comment} 
-                    onChange={e => setFormData({...formData, comment: e.target.value})}
-                    disabled={orderStatus === 'loading'}
-                  />
-                  <button 
-                    type="submit" 
-                    className="btn-gold submit-order-btn"
-                    disabled={orderStatus === 'loading'}
-                  >
-                    {orderStatus === 'loading' ? (
-                      <>
-                        <span className="spinner"></span> Обработка...
-                      </>
-                    ) : (
-                      'Подтвердить заказ'
-                    )}
-                  </button>
-                </form>
-              </>
-            )}
+            {/* Телефонная карточка */}
+            <div className="phone-card">
+              <div className="phone-icon">
+                <IoCallOutline />
+              </div>
+              <div className="phone-details">
+                <span className="phone-label">Позвоните для подтверждения</span>
+                <a href={`tel:${phoneNumber}`} className="phone-number">
+                  {formattedPhone}
+                </a>
+                <span className="phone-schedule">Ежедневно с 10:00 до 23:00</span>
+              </div>
+              <button className="copy-btn" onClick={copyPhone}>
+                {copied ? '✓ Скопировано' : 'Копировать'}
+              </button>
+            </div>
+
+            {/* Кнопка звонка */}
+            <a href={`tel:${phoneNumber}`} className="call-btn">
+              <IoCallOutline />
+              <span>Позвонить и подтвердить заказ</span>
+            </a>
+
+            <p className="booking-note">
+              📞 Позвоните нам, и мы подтвердим ваш заказ, уточним детали и время доставки
+            </p>
+
+            <button className="btn-outline-gold secondary-btn" onClick={handleCloseOrderModal}>
+              Вернуться в корзину
+            </button>
           </div>
         </div>
       )}

@@ -9,12 +9,10 @@ import {
   FaStar,
   FaUtensils,
   FaChevronRight,
-  FaSmoking
 } from 'react-icons/fa';
 import { MdOutlineRoomService } from 'react-icons/md';
 import { GiKnifeFork, GiSmokingPipe } from 'react-icons/gi';
 import { TbArmchair } from 'react-icons/tb';
-import { IoWaterOutline } from 'react-icons/io5';
 import './about.css';
 
 export default function About() {
@@ -55,10 +53,7 @@ export default function About() {
                 <FaStar className="tag-icon" />
                 О ресторане
               </span>
-              <h2>
-                Изысканный вкус
-                <span className="gold-text"> Востока</span>
-              </h2>
+              <h2>Изысканный вкус <span className="gold-text"> Востока</span></h2>
               <div className="title-decoration">
                 <span></span>
                 <span></span>
@@ -110,8 +105,8 @@ export default function About() {
                 <div className="info-content">
                   <span className="info-label">Телефоны</span>
                   <div className="info-phones">
-                    <span className="info-value">+998 907 449 870</span>
-                    <span className="info-value">+998 914 417 181</span>
+                    <span className="info-value">+998 90 744 98 70</span>
+                    <span className="info-value">+998 91 441 71 81</span>
                   </div>
                 </div>
               </div>
@@ -161,4 +156,4 @@ export default function About() {
       </div>
     </section>
   );
-};
+}
