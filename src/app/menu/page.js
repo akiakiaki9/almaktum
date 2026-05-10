@@ -25,33 +25,20 @@ import { GiChopsticks, GiNoodles, GiSushis, GiMeat, GiHotSpices } from 'react-ic
 import { FaCakeCandles } from "react-icons/fa6";
 import { TbSalad } from "react-icons/tb";
 import './menu-page.css';
-import PageHeader from '../components/common/PageHeader';
-import Footer from '../components/footer/Footer';
-import { menuData } from '../utils/data';
 import Navbar from '../components/navbar/Navbar';
+import PageHeader from '../components/common/PageHeader';
+import { menuData } from '../utils/data';
+import Footer from '../components/footer/Footer';
 
-// Функция для получения случайного фото блюда из интернета
-const getRandomFoodImage = (dishName) => {
-    const foodImages = [
-        'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400',
-        'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400',
-        'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
-        'https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400',
-        'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=400',
-        'https://images.unsplash.com/photo-1585109649139-366815a0d713?w=400',
-        'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400',
-        'https://images.unsplash.com/photo-1574484284009-3d96b177f7b1?w=400',
-        'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400',
-        'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400',
-        'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400',
-        'https://images.unsplash.com/photo-1625938144755-5f6e5f3b94b6?w=400',
-        'https://images.unsplash.com/photo-1632778149955-e80f8ceca2b8?w=400',
-        'https://images.unsplash.com/photo-1695223958714-80b1b97ec2fc?w=400',
-        'https://images.unsplash.com/photo-1694099095412-0a08d7c433d7?w=400'
-    ];
-    
-    const index = dishName?.length ? dishName.charCodeAt(0) % foodImages.length : Math.floor(Math.random() * foodImages.length);
-    return foodImages[index];
+
+// Функция для получения изображения блюда
+const getDishImage = (dish) => {
+    // Если у блюда есть свое фото, используем его
+    if (dish.image && dish.image !== '') {
+        return dish.image;
+    }
+    // Иначе используем плейсхолдер
+    return '/images/placeholder.jpg';
 };
 
 // Маппинг категорий к иконкам
@@ -105,7 +92,7 @@ export default function MenuPage() {
     const [randomizedAllItems, setRandomizedAllItems] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 12;
-    const { addToCart } = useCart();
+    const { addToCart, cart } = useCart();
 
     // Рандомизация всех блюд
     useEffect(() => {
@@ -161,14 +148,24 @@ export default function MenuPage() {
 
     const handleAddToCart = useCallback((item) => {
         setAddingItemId(item.id);
-        addToCart({
+        
+        const cartItem = {
             id: item.id,
             name: item.name,
-            image: item.image || getRandomFoodImage(item.name),
+            price: item.price || 0,
+            image: getDishImage(item),
             quantity: 1
-        });
+        };
+        
+        const existingItem = cart.find(i => i.id === item.id);
+        if (existingItem) {
+            addToCart({ ...cartItem, quantity: existingItem.quantity + 1 });
+        } else {
+            addToCart(cartItem);
+        }
+        
         setTimeout(() => setAddingItemId(null), 1000);
-    }, [addToCart]);
+    }, [addToCart, cart]);
 
     // Пагинация
     const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
@@ -342,17 +339,16 @@ export default function MenuPage() {
     );
 }
 
-// Отдельный компонент карточки (без цены)
+// Отдельный компонент карточки
 const MenuCard = ({ item, index, isAdding, onAddToCart }) => {
-    const [imgSrc, setImgSrc] = useState(null);
-    
-    useEffect(() => {
-        if (item.image) {
-            setImgSrc(item.image);
-        } else {
-            setImgSrc(getRandomFoodImage(item.name));
+    const [imgError, setImgError] = useState(false);
+
+    const getImageSrc = () => {
+        if (item.image && item.image !== '' && !imgError) {
+            return item.image;
         }
-    }, [item.image, item.name]);
+        return '/images/placeholder.jpg';
+    };
 
     return (
         <div className="menu-item-card" style={{ animationDelay: `${index * 0.03}s` }}>
@@ -361,19 +357,16 @@ const MenuCard = ({ item, index, isAdding, onAddToCart }) => {
 
             <div className="item-image">
                 <div className="image-wrapper">
-                    {imgSrc ? (
-                        <img 
-                            src={imgSrc} 
-                            alt={item.name} 
-                            className="item-img" 
-                            loading="lazy"
-                            onError={(e) => {
-                                e.target.src = getRandomFoodImage(item.name);
-                            }}
-                        />
-                    ) : (
-                        <div className="image-placeholder">🍽️</div>
-                    )}
+                    <img 
+                        src={getImageSrc()} 
+                        alt={item.name} 
+                        className="item-img" 
+                        loading="lazy"
+                        onError={(e) => {
+                            setImgError(true);
+                            e.target.src = '/images/placeholder.jpg';
+                        }}
+                    />
                     <div className="image-overlay">
                         <span className="quick-view">Быстрый просмотр</span>
                     </div>
@@ -386,6 +379,9 @@ const MenuCard = ({ item, index, isAdding, onAddToCart }) => {
             <div className="item-info">
                 <div className="item-header">
                     <h4>{item.name || 'Блюдо'}</h4>
+                    <span className="item-price gold-text">
+                        {item.price ? `${item.price.toLocaleString()} сум` : ''}
+                    </span>
                 </div>
                 <p className="item-description">{item.description || 'Описание отсутствует'}</p>
 

@@ -32,7 +32,7 @@ export default function Contact() {
             title: 'Адрес',
             details: ['г. Бухара, Шарк 1', 'Ресторан Al Maktum'],
             action: 'Построить маршрут',
-            link: 'https://maps.google.com/?q=Бухара+Шарк+1'
+            link: 'https://maps.app.goo.gl/kTaXHUsXEpCBXQU66'
         },
         {
             icon: <IoCall />,
@@ -96,7 +96,7 @@ export default function Contact() {
                         {/* Map */}
                         <div className="map-container">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3071.456789123456!2d64.42123456789012!3d39.77456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDQ2JzI4LjQiTiA2NMKwMjUnMTYuNCJF!5e0!3m2!1sru!2s!4v1234567890123!5m2!1sru!2s"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1823.6486302723958!2d64.45175393528599!3d39.76212655059514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f5005d0370226b1%3A0x81325186d9be1964!2sAl%20Maqtum!5e0!3m2!1sru!2s!4v1778407344109!5m2!1sru!2s"
                                 width="100%"
                                 height="250"
                                 style={{ border: 0 }}

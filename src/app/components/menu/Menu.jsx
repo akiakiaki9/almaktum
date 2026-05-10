@@ -14,37 +14,18 @@ import {
 import './menu.css';
 import { menuData } from '@/app/utils/data';
 
-// Функция для получения случайного фото блюда из интернета
-const getRandomFoodImage = (dishName) => {
-  const foodImages = [
-    'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400',
-    'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400',
-    'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
-    'https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400',
-    'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=400',
-    'https://images.unsplash.com/photo-1585109649139-366815a0d713?w=400',
-    'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400',
-    'https://images.unsplash.com/photo-1574484284009-3d96b177f7b1?w=400',
-    'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400',
-    'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400',
-    'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400',
-    'https://images.unsplash.com/photo-1625938144755-5f6e5f3b94b6?w=400',
-    'https://images.unsplash.com/photo-1632778149955-e80f8ceca2b8?w=400',
-    'https://images.unsplash.com/photo-1695223958714-80b1b97ec2fc?w=400',
-    'https://images.unsplash.com/photo-1694099095412-0a08d7c433d7?w=400',
-    'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400',
-    'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400',
-    'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400',
-    'https://images.unsplash.com/photo-1544025162-d76694265947?w=400',
-    'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400'
-  ];
-  
-  const index = dishName?.length ? dishName.charCodeAt(0) % foodImages.length : Math.floor(Math.random() * foodImages.length);
-  return foodImages[index];
+// Функция для получения изображения блюда
+const getDishImage = (dish) => {
+  // Если у блюда есть свое фото, используем его
+  if (dish.image && dish.image !== '') {
+    return dish.image;
+  }
+  // Иначе используем плейсхолдер
+  return '/images/placeholder.jpg';
 };
 
 export default function Menu() {
-  const { addToCart } = useCart();
+  const { addToCart, cart } = useCart();
   const [activeCategory, setActiveCategory] = useState('all');
   const [isVisible, setIsVisible] = useState(false);
   const [selectedCategoryData, setSelectedCategoryData] = useState(null);
@@ -247,11 +228,20 @@ export default function Menu() {
     const cartItem = {
       id: item.id,
       name: item.name,
-      price: 0,
-      image: item.image || getRandomFoodImage(item.name),
+      price: item.price || 0,
+      image: getDishImage(item),
       quantity: 1
     };
-    addToCart(cartItem);
+    
+    // Добавляем цену в объект для отображения
+    const existingItem = cart.find(i => i.id === item.id);
+    if (existingItem) {
+      // Если товар уже в корзине, увеличиваем количество
+      addToCart({ ...cartItem, quantity: existingItem.quantity + 1 });
+    } else {
+      addToCart(cartItem);
+    }
+    
     setTimeout(() => {
       setIsAdding(null);
     }, 500);
@@ -271,10 +261,10 @@ export default function Menu() {
         </button>
         <div className="dish-modal-image">
           <img 
-            src={dish.image || getRandomFoodImage(dish.name)} 
-            alt={dish.name} 
+            src={getDishImage(dish)} 
+            alt={dish.name}
             onError={(e) => {
-              e.target.src = getRandomFoodImage(dish.name);
+              e.target.src = '/images/placeholder.jpg';
             }}
           />
           {dish.isChefSpecial && (
@@ -286,6 +276,9 @@ export default function Menu() {
         <div className="dish-modal-info">
           <h2>{dish.name}</h2>
           <p className="dish-modal-description">{dish.description}</p>
+          <div className="dish-modal-price">
+            {dish.price ? `${dish.price.toLocaleString()} сум` : 'Цена по запросу'}
+          </div>
           <button
             className="dish-modal-btn"
             onClick={() => {
@@ -423,15 +416,14 @@ export default function Menu() {
 // MenuCard Component
 function MenuCard({ item, onAddToCart, onImageClick, index, isAdding, isChefCategory }) {
   const [isHovered, setIsHovered] = useState(false);
-  const [imgSrc, setImgSrc] = useState(null);
+  const [imgError, setImgError] = useState(false);
 
-  useEffect(() => {
-    if (item.image) {
-      setImgSrc(item.image);
-    } else {
-      setImgSrc(getRandomFoodImage(item.name));
+  const getImageSrc = () => {
+    if (item.image && item.image !== '' && !imgError) {
+      return item.image;
     }
-  }, [item.image, item.name]);
+    return '/images/placeholder.jpg';
+  };
 
   return (
     <div
@@ -451,20 +443,15 @@ function MenuCard({ item, onAddToCart, onImageClick, index, isAdding, isChefCate
       )}
 
       <div className="menu-card-image" onClick={() => onImageClick(item)}>
-        {imgSrc ? (
-          <img
-            src={imgSrc}
-            alt={item.name}
-            onError={(e) => {
-              e.target.src = getRandomFoodImage(item.name);
-            }}
-            loading="lazy"
-          />
-        ) : (
-          <div className="image-placeholder">
-            <span>🍽️</span>
-          </div>
-        )}
+        <img
+          src={getImageSrc()}
+          alt={item.name}
+          onError={(e) => {
+            setImgError(true);
+            e.target.src = '/images/placeholder.jpg';
+          }}
+          loading="lazy"
+        />
         <div className="image-overlay">
           <span className="view-icon">🔍</span>
         </div>
@@ -477,6 +464,9 @@ function MenuCard({ item, onAddToCart, onImageClick, index, isAdding, isChefCate
             <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar />
           </div>
         </div>
+        <p className="card-price gold-text">
+          {item.price ? `${item.price.toLocaleString()} сум` : 'Цена по запросу'}
+        </p>
         <p className="card-description">{item.description}</p>
         <button
           className={`card-order-btn ${isHovered ? 'visible' : ''} ${isAdding === item.id ? 'adding' : ''}`}
