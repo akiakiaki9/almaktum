@@ -1,0 +1,452 @@
+.video-review {
+  padding: 100px 0;
+  background: linear-gradient(135deg, var(--dark), #0a0808);
+  position: relative;
+  overflow: hidden;
+}
+
+.video-bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.video-review-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.video-review-header h2 {
+  font-size: 48px;
+  margin: 16px 0;
+}
+
+.video-review-header p {
+  color: var(--text-muted);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.video-review-content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 50px;
+  align-items: start;
+}
+
+/* Вертикальное видео - стиль "||" */
+.video-vertical-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.video-vertical-container {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.video-vertical-frame {
+  position: relative;
+  background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+  border-radius: 30px;
+  padding: 12px;
+  border: 2px solid var(--gold);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.video-vertical {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+  background: #000;
+}
+
+.video-vertical-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.video-vertical-frame:hover .video-vertical-overlay {
+  opacity: 1;
+}
+
+.play-btn-vertical {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.9);
+  border: none;
+  color: var(--dark);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  pointer-events: auto;
+}
+
+.play-btn-vertical:hover {
+  transform: scale(1.1);
+  background: var(--gold);
+}
+
+.video-vertical-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  margin-top: 15px;
+}
+
+.ctrl-btn {
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.ctrl-btn:hover {
+  transform: scale(1.1);
+  color: var(--gold-light);
+}
+
+.progress-vertical {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.progress-fill-vertical {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+.time-vertical {
+  color: var(--gold);
+  font-size: 11px;
+  font-family: monospace;
+}
+
+.video-vertical-label {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.video-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  background: rgba(212, 175, 55, 0.2);
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.video-vertical-label p {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Текстовый обзор залов */
+.halls-review-wrapper {
+  background: linear-gradient(135deg, #0f0d0d, #0a0808);
+  border-radius: 24px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  overflow: hidden;
+  padding: 30px;
+}
+
+.halls-review-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.halls-review-header h3 {
+  font-size: 24px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.halls-review-header p {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.halls-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.hall-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 40px;
+  color: var(--text-light);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.hall-tab:hover {
+  border-color: var(--gold);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.hall-tab.active {
+  background: var(--gold);
+  color: var(--dark);
+  border-color: var(--gold);
+}
+
+.hall-tab.active svg {
+  color: var(--dark);
+}
+
+.hall-tab svg {
+  font-size: 16px;
+  color: var(--gold);
+}
+
+.hall-review-content {
+  animation: fadeInUp 0.4s ease;
+}
+
+.hall-review-info {
+  text-align: center;
+}
+
+.hall-icon-large {
+  font-size: 48px;
+  color: var(--gold);
+  margin-bottom: 15px;
+}
+
+.hall-review-info h4 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.hall-capacity {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.hall-description {
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.hall-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.hall-feature {
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.hall-book-btn {
+  padding: 12px 30px;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  border: none;
+  border-radius: 40px;
+  color: var(--dark);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.hall-book-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Модальное окно */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.video-modal-content {
+  position: relative;
+  max-width: 90vw;
+  width: 100%;
+  max-height: 90vh;
+  background: var(--dark-card);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--gold);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: var(--gold);
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s;
+}
+
+.modal-close:hover {
+  background: var(--gold);
+  color: var(--dark);
+  transform: rotate(90deg);
+}
+
+.modal-video-container {
+  width: 100%;
+  background: #000;
+}
+
+.modal-video {
+  width: 100%;
+  max-height: 80vh;
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .video-review-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .video-vertical-container {
+    max-width: 300px;
+  }
+  
+  .video-review-header h2 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-review {
+    padding: 60px 0;
+  }
+  
+  .video-vertical-container {
+    max-width: 260px;
+  }
+  
+  .play-btn-vertical {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .halls-tabs {
+    gap: 8px;
+  }
+  
+  .hall-tab {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .hall-tab span {
+    display: none;
+  }
+  
+  .hall-tab svg {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .halls-review-wrapper {
+    padding: 20px;
+  }
+  
+  .hall-review-info h4 {
+    font-size: 20px;
+  }
+  
+  .hall-description {
+    font-size: 14px;
+  }
+}

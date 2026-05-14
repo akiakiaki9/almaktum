@@ -9,6 +9,7 @@ import Halls from './components/halls/Halls';
 import Footer from './components/footer/Footer';
 import Gallery from './components/gallery/Gallery';
 import Contact from './components/contacts/Contacts';
+import VideoReview from './components/VideoReview/VideoReview';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
+      <VideoReview />
       <Menu />
       <Halls />
       <Gallery />
