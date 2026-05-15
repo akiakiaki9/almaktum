@@ -130,7 +130,8 @@ export const menuData = [
     items: [
       { id: 90, name: "РИС", description: "рис отварной", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSohCPSbpaTZpzN-KbZVRY4dc7NoAi2csicZw&s" },
       { id: 91, name: "ФРИ", description: "картошка фри", image: "https://images.gastronom.ru/d_tNE85NotuCZzXNP8dktgsVFr9_AudkqFsciR3Hydc/pr:article-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzhhMTRjODI1LTAzZDUtNDAxYS1iOWY1LTU4Yzc5MDAzNmQ4OS5qcGc.webp" },
-      { id: 92, name: "КАРТОШКА ПО ДЕРЕВЕНСКИ", description: "картошка по деревенски", image: "https://images.gastronom.ru/m4o8i4TxE_YqIBiOBwFVGMBg1WyvzJ_H6mCebCFl79I/pr:article-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzL2NmMThmMGNiLWM0MjEtNGFkNy05Mjg2LTQzMzIwMzUyOTZiYS5qcGc.webp" }
+      { id: 92, name: "КАРТОШКА ПО ДЕРЕВЕНСКИ", description: "картошка по деревенски", image: "https://images.gastronom.ru/m4o8i4TxE_YqIBiOBwFVGMBg1WyvzJ_H6mCebCFl79I/pr:article-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzL2NmMThmMGNiLWM0MjEtNGFkNy05Mjg2LTQzMzIwMzUyOTZiYS5qcGc.webp" },
+      { id: 200, name: "Кулча", description: "кулча", image: "/menu/200.png" },
     ]
   },
   {
@@ -279,9 +280,12 @@ export const halls = [
     id: 2,
     name: "Кабины",
     capacity: 11,
-    image: "",
+    image: "/images/cabine/1.png",
     description: "Уютные отдельные кабинки для приватных встреч",
-    images: []
+    images: [
+      "/images/cabine/1.png",
+      "/images/cabine/2.png",
+    ]
   },
   {
     id: 3,

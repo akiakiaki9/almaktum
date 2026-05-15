@@ -1,20 +1,19 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { 
-  IoPlay, 
-  IoPause, 
-  IoVolumeHigh, 
+import {
+  IoPlay,
+  IoPause,
+  IoVolumeHigh,
   IoVolumeMute,
   IoExpand,
   IoClose,
   IoPlayCircle,
   IoPeople,
-  IoWine,
   IoHeart,
   IoCamera
 } from 'react-icons/io5';
-import { FaStar, FaCrown, FaUtensils, FaMusic, FaGlassCheers } from 'react-icons/fa';
+import { FaUtensils, FaGlassCheers } from 'react-icons/fa';
 import './videoreview.css';
 
 export default function VideoReview() {
@@ -121,7 +120,7 @@ export default function VideoReview() {
     if (videoRef.current) {
       const percent = (videoRef.current.currentTime / videoRef.current.duration) * 100;
       setProgress(percent);
-      
+
       const mins = Math.floor(videoRef.current.currentTime / 60);
       const secs = Math.floor(videoRef.current.currentTime % 60);
       setCurrentTime(`${mins}:${secs.toString().padStart(2, '0')}`);
@@ -280,4 +279,4 @@ export default function VideoReview() {
       )}
     </>
   );
-}
+};
